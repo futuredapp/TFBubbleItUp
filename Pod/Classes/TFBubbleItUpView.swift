@@ -59,13 +59,13 @@ struct TFBubbleItem {
     }
     
     public override func prepareForInterfaceBuilder() {
-        self.setContactItems([TFBubbleItem(text: "exm@ex.com"), TFBubbleItem(text: "hello@thefuntasty.com")])
+        self.setItems([TFBubbleItem(text: "exm@ex.com"), TFBubbleItem(text: "hello@thefuntasty.com")])
     }
     
     // MARK:- Public API
     
     /// Sets new items and reloads sizes
-    func setContactItems(items: [TFBubbleItem]) {
+    func setItems(items: [TFBubbleItem]) {
         self.items = items // Set new items
         
         CATransaction.begin()
@@ -77,6 +77,20 @@ struct TFBubbleItem {
         self.reloadData() // Reload collectionView
         
         CATransaction.commit()
+    }
+    
+    /// Returns all non-empty items
+    func stringItems() -> [String] {
+        
+        var stringArray: [String] = []
+        
+        for item in self.items {
+            if item.text != "" {
+                stringArray.append(item.text)
+            }
+        }
+        
+        return stringArray
     }
     
     // MARK:- Autolayout
