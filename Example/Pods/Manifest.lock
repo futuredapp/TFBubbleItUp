@@ -1,0 +1,14 @@
+PODS:
+  - TFBubbleItUp (0.1.0)
+
+DEPENDENCIES:
+  - TFBubbleItUp (from `../`)
+
+EXTERNAL SOURCES:
+  TFBubbleItUp:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  TFBubbleItUp: 34b57dd0b515b8fa972b47cf140236df078e2a33
+
+COCOAPODS: 0.38.2

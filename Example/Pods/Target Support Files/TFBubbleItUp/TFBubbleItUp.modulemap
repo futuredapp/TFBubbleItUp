@@ -1,0 +1,6 @@
+framework module TFBubbleItUp {
+  umbrella header "TFBubbleItUp-umbrella.h"
+
+  export *
+  module * { export * }
+}
