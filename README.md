@@ -9,7 +9,7 @@
 
 ## Usage
 
-Just place UIView in your controller wherever you want and make it as TFBubbleItUp subclass. It is configured as IBDesignable so it will show up. The content size is calculater by the view itself, no need to use height constraint. Just set in Interface builder Intrinsic size to placeholder - width check None and height choose what suit you best.
+Just place UIView in your controller wherever you want and make it as TFBubbleItUpView subclass. It is configured as IBDesignable so it will show up. The content size is calculater by the view itself, no need to use height constraint. Just set in Interface builder Intrinsic size to placeholder - width check None and height choose what suit you best.
 
 ![Intrinsic size](https://github.com/thefuntasty/TFBubbleItUp/blob/master/intrinsic-size.png)
 
