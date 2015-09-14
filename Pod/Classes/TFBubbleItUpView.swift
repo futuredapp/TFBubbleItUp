@@ -84,7 +84,7 @@ public struct TFBubbleItem {
     }
     
     /// Returns all non-empty items
-    func stringItems() -> [String] {
+    public func stringItems() -> [String] {
         
         var stringArray: [String] = []
         
