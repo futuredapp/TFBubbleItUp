@@ -9,13 +9,13 @@
 
 ## Usage
 
-Just place UIView in your controller wherever you want and make it as TFBubbleItUpView subclass. It is configured as IBDesignable so it will show up. The content size is calculated by the view itself, no need to use height constraint. Just set in Interface builder Intrinsic size to placeholder - width check None and height choose what suit you best.
+Just place UIView in your controller wherever you want and make it as TFBubbleItUpView subclass. It is configured as IBDesignable, so it will show up. The content size is calculated by the view itself, no need to use height constraint. Just set in the Interface builder Intrinsic size to placeholder - width check None and for height choose what suits you best.
 
 ![Intrinsic size](https://github.com/thefuntasty/TFBubbleItUp/blob/master/intrinsic-size.png)
 
-There is also delegate available (named bubbleItUpDelegate, because TFBubbleItUpView is in fact subclass of UICollectionView) with currently one method **func bubbleItUpViewDidFinishEditingBubble(view: TFBubbleItUpView, text: String)**. 
+There is also a delegate available (named bubbleItUpDelegate, because TFBubbleItUpView is in fact a subclass of UICollectionView) with currently one method **func bubbleItUpViewDidFinishEditingBubble(view: TFBubbleItUpView, text: String)**. 
 
-You can preset values with **setItem([TFBubbleItem])** where TFBubbleItem is a struct which initializer takes string (*TFBubbleItem(text: "Hullo!")*).
+You can preset values with **setItem([TFBubbleItem])** where TFBubbleItem is a struct whose initializer takes string (*TFBubbleItem(text: "Hullo!")*).
 
 If you want to access all items from view, there is method for that **stringItems() -> [String]**. That's because sometimes there are empty items, this method will filter it for you a send you only valid strings.
 
@@ -23,7 +23,7 @@ If you want to access all items from view, there is method for that **stringItem
 
 BubbleItUp is highly configurable. There is configuration file called *TFBubbleItUpViewConfiguration* with class variables for configuration.
 
-It is mix of appearence and functional stuff. I would like to point out **skipOnWhitespace** and **skipOnReturnKey** propertiest, by them you can change the behaviour of creating bubble around text (see documentation comments bellow). 
+It is a mix of appearance and functional stuff. I would like to point out **skipOnWhitespace** and **skipOnReturnKey** properties, by them you can change the behaviour of bubble creation around text (see documentation comments bellow). 
 
 ```swift
 /// Background color for cell in normal state
