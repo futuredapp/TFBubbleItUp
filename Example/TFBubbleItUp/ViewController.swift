@@ -32,7 +32,7 @@ class ViewController: UIViewController, TFBubbleItUpViewDelegate {
     // MARK:- TFBubbleItUpDelegate
     
     func bubbleItUpViewDidFinishEditingBubble(view: TFBubbleItUpView, text: String) {
-        self.textLabel.text = "Did add or edit " + text
+        self.textLabel.text = view.stringItems().joinWithSeparator(", ")
     }
     
 }
