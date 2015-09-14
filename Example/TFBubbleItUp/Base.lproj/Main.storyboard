@@ -21,17 +21,31 @@
                                 <rect key="frame" x="15" y="50" width="570" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bsL-Wp-Hfb">
+                                <rect key="frame" x="15" y="120" width="570" height="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" red="0.96862745100000003" green="0.97647058819999999" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.80392158030000005" blue="0.39215686919999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="gSV-rR-u1H" secondAttribute="trailing" constant="15" id="5PZ-Hx-X2L"/>
+                            <constraint firstItem="bsL-Wp-Hfb" firstAttribute="top" secondItem="gSV-rR-u1H" secondAttribute="bottom" constant="20" id="GUZ-Z6-9yK"/>
                             <constraint firstItem="gSV-rR-u1H" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="30" id="Rr3-Ne-fOb"/>
+                            <constraint firstItem="bsL-Wp-Hfb" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="15" id="hDH-Po-Daj"/>
                             <constraint firstItem="gSV-rR-u1H" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="15" id="mjS-Vf-hWk"/>
+                            <constraint firstAttribute="trailing" secondItem="bsL-Wp-Hfb" secondAttribute="trailing" constant="15" id="pUh-Y6-PbI"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="bubbleItUpView" destination="gSV-rR-u1H" id="uVy-FV-XgF"/>
+                        <outlet property="textLabel" destination="bsL-Wp-Hfb" id="XlQ-Lm-6ZI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="244" y="339"/>
         </scene>
     </scenes>
 </document>

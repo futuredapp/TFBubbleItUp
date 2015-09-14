@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct TFBubbleItem {
+public struct TFBubbleItem {
     var text: String
     var becomeFirstResponder: Bool = false
     
@@ -18,11 +18,17 @@ struct TFBubbleItem {
     }
 }
 
+@objc public protocol TFBubbleItUpViewDelegate {
+    func bubbleItUpViewDidFinishEditingBubble(view: TFBubbleItUpView, text: String)
+}
+
 @IBDesignable public class TFBubbleItUpView: UICollectionView, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UIGestureRecognizerDelegate, TFBubbleItUpViewCellDelegate {
 
     private var items: [TFBubbleItem] = [TFBubbleItem(text: "")]
     private var sizingCell: TFBubbleItUpViewCell!
     private var tapRecognizer: UITapGestureRecognizer!
+    
+    public var bubbleItUpDelegate: TFBubbleItUpViewDelegate?
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -54,8 +60,6 @@ struct TFBubbleItem {
         
         self.tapRecognizer = UITapGestureRecognizer(target: self, action: Selector("didTapOnView:"))
         self.addGestureRecognizer(self.tapRecognizer)
-
-        
     }
     
     public override func prepareForInterfaceBuilder() {
@@ -105,7 +109,6 @@ struct TFBubbleItem {
     private func invalidateIntrinsicContentSize(completionBlock: (() -> ())?) {
         
         if self.intrinsicContentSize() != self.bounds.size {
-            
             UIView.animateWithDuration(0.2, animations: { () -> Void in
                 self.invalidateIntrinsicContentSize()
                 //            self.superview?.setNeedsLayout()
@@ -114,11 +117,9 @@ struct TFBubbleItem {
                 }) { (finished) -> Void in
                     completionBlock?()
             }
-        
         } else {
             self.invalidateIntrinsicContentSize()
         }
-        
     }
     
     // MARK:- Handling gestures
@@ -134,7 +135,6 @@ struct TFBubbleItem {
         } else {
             return true
         }
-        
     }
     
     func didTapOnView(sender: AnyObject) {
@@ -150,11 +150,8 @@ struct TFBubbleItem {
                 }) { (finished) -> Void in
                     // Invalidate intrinsic size when done
                     self.invalidateIntrinsicContentSize(nil)
-                    // The new cell should now become the first reponder
-                    //self.cellForItemAtIndexPath(newIndexPath)?.becomeFirstResponder()
             }
         }
-        
     }
     
     // MARK:- UICollectionViewDelegate and datasource
@@ -257,6 +254,7 @@ struct TFBubbleItem {
     func editingDidEnd(cell: TFBubbleItUpViewCell, text: String) {
         
         guard let indexPath = indexPathForCell(cell) else {
+            
             return
         }
         
@@ -272,7 +270,8 @@ struct TFBubbleItem {
                     // Invalidate intrinsic size when done
                     self.invalidateIntrinsicContentSize(nil)
             }
+        } else if text != "" {
+            self.bubbleItUpDelegate?.bubbleItUpViewDidFinishEditingBubble(self, text: text)
         }
     }
-    
 }

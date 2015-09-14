@@ -7,12 +7,21 @@
 //
 
 import UIKit
+import TFBubbleItUp
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, TFBubbleItUpViewDelegate {
 
+    @IBOutlet var bubbleItUpView: TFBubbleItUpView!
+    @IBOutlet var textLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        self.textLabel.text = "There will be shown added items"
+        
+        // Set bubbleItUpDelegate delegate
+        self.bubbleItUpView.bubbleItUpDelegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -20,5 +29,11 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    // MARK:- TFBubbleItUpDelegate
+    
+    func bubbleItUpViewDidFinishEditingBubble(view: TFBubbleItUpView, text: String) {
+        self.textLabel.text = "Did add or edit " + text
+    }
+    
 }
 
