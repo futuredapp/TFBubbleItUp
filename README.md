@@ -13,9 +13,17 @@ Just place UIView in your controller wherever you want and make it as TFBubbleIt
 
 ![Intrinsic size](https://github.com/thefuntasty/TFBubbleItUp/blob/master/intrinsic-size.png)
 
+There is also delegate available (named bubbleItUpDelegate, because TFBubbleItUpView is in fact subclass of UICollectionView) with currently one method **func bubbleItUpViewDidFinishEditingBubble(view: TFBubbleItUpView, text: String)**. 
+
+You can preset values with **setItem([TFBubbleItem])** where TFBubbleItem is a struct which initializer takes string (*TFBubbleItem(text: "Hullo!")*).
+
+If you want to access all items from view, there is method for that **stringItems() -> [String]**. That's because sometimes there are empty items, this method will filter it for you a send you only valid strings.
+
 ## Configuration
 
 BubbleItUp is highly configurable. There is configuration file called *TFBubbleItUpViewConfiguration* with class variables for configuration.
+
+It is mix of appearence and functional stuff. I would like to point out **skipOnWhitespace** and **skipOnReturnKey** propertiest, by them you can change the behaviour of creating bubble around text (see documentation comments bellow). 
 
 ```swift
 /// Background color for cell in normal state
@@ -71,6 +79,10 @@ public static var skipOnWhitespace: Bool = true
 /// If true it creates new item when user press the keyboards return key. Otherwise resigns first responder
 public static var skipOnReturnKey: Bool = false
 ```
+
+## TO-DO
+
+- Create a validation mechanism
 
 ## Requirements
 
