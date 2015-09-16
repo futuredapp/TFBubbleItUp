@@ -19,6 +19,41 @@ You can preset values with **setItem([TFBubbleItem])** where TFBubbleItem is a s
 
 If you want to access all items from view, there is method for that **stringItems() -> [String]**. That's because sometimes there are empty items, this method will filter it for you a send you only valid strings.
 
+## Validation
+Among all the configuration, there is an ability to validate items before they can be bubbled. There is typealias named Validation which is just a function definition:
+
+```swift
+public typealias Validation = String -> Bool
+```
+
+Verification function takes a string and returns Bool indicates whether the string is valid or not. These methods should be elementary. There are already two of them available as public classes of TFBubbleItUpValidation - testEmptiness() and testEmailAddress(). These methods returns Validation function and the validation can be called like testEmptiness()("a text"). This technique of translating the evaluation of a function is called [Currying](https://en.wikipedia.org/wiki/Currying). You can provide your own Validation:
+
+```swift
+func testSomething() -> Validation {
+  return { text in
+    return text == "something"
+  }
+}
+```
+
+This allows us to easily combine validation by function TFBubbleItUpValidation.combine(v1: Validation, v2: Validation) or even better with provided operator **|>>** 
+
+```swift
+let validation = TFBubbleItUpValidation.testEmptiness() |>> TFBubbleItUpValidation.testEmailAddress()
+```
+
+The validation can be applied to TFBubbleItUpView via configuration
+
+```swift
+TFBubbleItUpViewConfiguration.itemValidation = validation
+```
+
+And we can also validate the maximum number of items user can type in by
+
+```swift
+TFBubbleItUpViewConfiguration.numberOfItems = .Quantity(5) // default .Unlimited
+```
+
 ## Configuration
 
 BubbleItUp is highly configurable. There is configuration file called *TFBubbleItUpViewConfiguration* with class variables for configuration.
@@ -27,27 +62,40 @@ It is a mix of appearance and functional stuff. I would like to point out **skip
 
 ```swift
 /// Background color for cell in normal state
-public static var viewBackgroundColor = UIColor(red: 0.918, green: 0.933, blue: 0.949, alpha: 1.00)
+public static var viewBackgroundColor: UIColor = UIColor(red: 0.918, green: 0.933, blue: 0.949, alpha: 1.00)
+
 /// Background color for cell in edit state
-public static var editBackgroundColor = UIColor.whiteColor()
+public static var editBackgroundColor: UIColor = UIColor.whiteColor()
+
+/// Background color for cell in invalid state
+public static var invalidBackgroundColor: UIColor = UIColor.whiteColor()
 
 /// Font for cell in normal state
-public static var viewFont = UIFont.systemFontOfSize(12.0)
+public static var viewFont: UIFont = UIFont.systemFontOfSize(12.0)
 
 /// Font for cell in edit state
-public static var editFont = UIFont.systemFontOfSize(12.0)
+public static var editFont: UIFont = UIFont.systemFontOfSize(12.0)
+
+/// Font for cell in invalid state
+public static var invalidFont: UIFont = UIFont.systemFontOfSize(12.0)
 
 /// Font color for cell in view state
-public static var viewFontColor = UIColor(red: 0.353, green: 0.388, blue: 0.431, alpha: 1.00)
+public static var viewFontColor: UIColor = UIColor(red: 0.353, green: 0.388, blue: 0.431, alpha: 1.00)
 
 /// Font color for cell in edit state
-public static var editFontColor = UIColor(red: 0.510, green: 0.553, blue: 0.596, alpha: 1.00)
+public static var editFontColor: UIColor = UIColor(red: 0.510, green: 0.553, blue: 0.596, alpha: 1.00)
+
+/// Font color for cell in invalid state
+public static var invalidFontColor: UIColor = UIColor(red: 0.510, green: 0.553, blue: 0.596, alpha: 1.00)
 
 /// Corner radius for cell in view state
 public static var viewCornerRadius: Float = 2.0
 
 /// Corner radius for cell in edit state
 public static var editCornerRadius: Float = 2.0
+
+/// Corner radius for cell in invalid state
+public static var invalidCornerRadius: Float = 2.0
 
 /// Height for item
 public static var cellHeight: Float = 25.0
@@ -78,11 +126,17 @@ public static var skipOnWhitespace: Bool = true
 
 /// If true it creates new item when user press the keyboards return key. Otherwise resigns first responder
 public static var skipOnReturnKey: Bool = false
+
+/// Number of items that could be written
+public static var numberOfItems: NumberOfItems = .Unlimited
+
+/// Item has to pass validation before it can be bubbled
+public static var itemValidation: Validation? = nil
 ```
 
 ## TO-DO
 
-- Create a validation mechanism
+- ~~Create a validation mechanism~~
 
 ## Requirements
 
