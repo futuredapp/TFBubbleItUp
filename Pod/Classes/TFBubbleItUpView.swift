@@ -98,6 +98,7 @@ public struct TFBubbleItem {
         return stringArray
     }
     
+    /// Returns all valid strings
     public func validStrings() -> [String] {
         var stringArray: [String] = []
         
