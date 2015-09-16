@@ -8,6 +8,8 @@
 
 import Foundation
 
+public typealias Validation = String -> Bool
+
 infix operator |>> {associativity left }
 
 public func |>> (v1: Validation, v2: Validation) -> Validation {

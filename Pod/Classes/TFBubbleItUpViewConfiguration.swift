@@ -14,8 +14,6 @@ public enum NumberOfItems {
     case Quantity(Int)
 }
 
-public typealias Validation = (String) -> Bool
-
 public class TFBubbleItUpViewConfiguration {
     
     /// Background color for cell in normal state
@@ -29,6 +27,9 @@ public class TFBubbleItUpViewConfiguration {
     
     /// Font for cell in normal state
     public static var viewFont: UIFont = UIFont.systemFontOfSize(12.0)
+    
+    /// Font for cell in normal state
+    public static var placeholderFont: UIFont = UIFont.systemFontOfSize(12.0)
     
     /// Font for cell in edit state
     public static var editFont: UIFont = UIFont.systemFontOfSize(12.0)
@@ -44,6 +45,9 @@ public class TFBubbleItUpViewConfiguration {
 
     /// Font color for cell in invalid state
     public static var invalidFontColor: UIColor = UIColor(red: 0.510, green: 0.553, blue: 0.596, alpha: 1.00)
+    
+    /// Font color for cell in invalid state
+    public static var placeholderFontColor: UIColor = UIColor(red: 0.510, green: 0.553, blue: 0.596, alpha: 1.00)
     
     /// Corner radius for cell in view state
     public static var viewCornerRadius: Float = 2.0

@@ -22,6 +22,7 @@ class ViewController: UIViewController, TFBubbleItUpViewDelegate {
         
         // Set bubbleItUpDelegate delegate
         self.bubbleItUpView.bubbleItUpDelegate = self
+        self.bubbleItUpView.setPlaceholderText("Type something...")
         
         let validation = TFBubbleItUpValidation.testEmptiness() |>> TFBubbleItUpValidation.testEmailAddress()
         TFBubbleItUpViewConfiguration.itemValidation = validation

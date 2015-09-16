@@ -24,9 +24,10 @@ public struct TFBubbleItem {
 
 @IBDesignable public class TFBubbleItUpView: UICollectionView, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UIGestureRecognizerDelegate, TFBubbleItUpViewCellDelegate {
 
-    private var items: [TFBubbleItem] = [TFBubbleItem(text: "")]
+    private var items: [TFBubbleItem] = []
     private var sizingCell: TFBubbleItUpViewCell!
     private var tapRecognizer: UITapGestureRecognizer!
+    private var placeholderLabel: UILabel!
     
     public var bubbleItUpDelegate: TFBubbleItUpViewDelegate?
     
@@ -45,10 +46,18 @@ public struct TFBubbleItem {
     func customInit() {
         // Load sizing cell for width calculation
         self.sizingCell = TFBubbleItUpViewCell(frame: CGRectMake(0, 0, 100, CGFloat(TFBubbleItUpViewConfiguration.cellHeight)))
+
         self.backgroundColor = UIColor.whiteColor()
+        var frame = self.bounds
+        frame.size.height = self.minimumHeight()
+        self.placeholderLabel = UILabel(frame: CGRectInset(frame, 20, 0))
+        let view = UIView(frame: frame)
+        view.addSubview(self.placeholderLabel)
+        self.backgroundView = view
+        self.placeholderLabel.font = TFBubbleItUpViewConfiguration.placeholderFont
+        self.placeholderLabel.textColor = TFBubbleItUpViewConfiguration.placeholderFontColor
         
         self.registerClass(TFBubbleItUpViewCell.self, forCellWithReuseIdentifier: TFBubbleItUpViewCell.identifier)
-        
         
         self.dataSource = self
         self.delegate = self
@@ -111,13 +120,24 @@ public struct TFBubbleItem {
         return stringArray
     }
     
+    public func setPlaceholderText(text: String) {
+        self.placeholderLabel.text = text
+    }
+    
     // MARK:- Autolayout
     
     override public func intrinsicContentSize() -> CGSize {
         // Calculate custom intrinsic size by collectionViewLayouts contentent size
         let size = (self.collectionViewLayout as! UICollectionViewFlowLayout).collectionViewContentSize()
         
-        return CGSizeMake(CGRectGetWidth(self.bounds), size.height)
+        return CGSizeMake(CGRectGetWidth(self.bounds), max(self.minimumHeight(), size.height))
+    }
+    
+    func minimumHeight() -> CGFloat {
+        let defaultHeight: CGFloat = CGFloat(TFBubbleItUpViewConfiguration.cellHeight)
+        let padding = TFBubbleItUpViewConfiguration.inset.top + TFBubbleItUpViewConfiguration.inset.bottom
+        
+        return defaultHeight + padding
     }
     
     private func invalidateIntrinsicContentSize(completionBlock: (() -> ())?) {
@@ -156,6 +176,11 @@ public struct TFBubbleItem {
         if let last = self.items.last where last.text == "" || !isTextValid(last.text) || self.items.count == self.needPreciseNumberOfItems() {
             self.cellForItemAtIndexPath(NSIndexPath(forItem: self.items.count - 1, inSection: 0))?.becomeFirstResponder()
         } else {
+            
+            if self.items.count == 0 {
+                self.placeholderLabel.hidden = true
+            }
+            
             self.items.append(TFBubbleItem(text: "", becomeFirstResponder: true)) // insert new data item at the end
             
             // Update collectionView
@@ -290,6 +315,8 @@ public struct TFBubbleItem {
         }
         
         if text == "" {
+            
+            
             self.items.removeAtIndex(indexPath.item)
             
             // Update collectionView
@@ -298,6 +325,10 @@ public struct TFBubbleItem {
                 }) { (finished) -> Void in
                     // Invalidate intrinsic size when done
                     self.invalidateIntrinsicContentSize(nil)
+                    
+                    if self.items.count == 0 {
+                        self.placeholderLabel.hidden = false
+                    }
             }
         } else if text != "" {
             self.bubbleItUpDelegate?.bubbleItUpViewDidFinishEditingBubble(self, text: text)
