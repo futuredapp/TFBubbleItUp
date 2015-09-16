@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = "TFBubbleItUp"
-  s.version          = "1.1.0"
-  s.summary          = "Text field with bubbles"
+  s.version          = "1.2.0"
+  s.summary          = "Text field with bubbles and ability of validation"
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
 #   * Write the description between the DESC delimiters below.
 #   * Finally, don't worry about the indent, CocoaPods strips it!  
   s.description      = <<-DESC
-                        Custom view for writing tags, contacts and etc.
+                        Custom view for writing tags, contacts and etc. with validation.
                        DESC
 
   s.homepage         = "https://github.com/thefuntasty/TFBubbleItUp"
