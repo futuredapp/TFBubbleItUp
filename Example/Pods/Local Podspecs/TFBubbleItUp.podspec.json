@@ -1,16 +1,16 @@
 {
   "name": "TFBubbleItUp",
-  "version": "0.1.0",
-  "summary": "A short description of TFBubbleItUp.",
-  "description": "",
-  "homepage": "https://github.com/<GITHUB_USERNAME>/TFBubbleItUp",
+  "version": "1.1.0",
+  "summary": "Text field with bubbles",
+  "description": "Custom view for writing tags, contacts and etc.",
+  "homepage": "https://github.com/thefuntasty/TFBubbleItUp",
   "license": "MIT",
   "authors": {
     "Ales Kocur": "ales@thefuntasty.com"
   },
   "source": {
-    "git": "https://github.com/<GITHUB_USERNAME>/TFBubbleItUp.git",
-    "tag": "0.1.0"
+    "git": "https://github.com/thefuntasty/TFBubbleItUp.git",
+    "tag": "1.1.0"
   },
   "platforms": {
     "ios": "8.0"

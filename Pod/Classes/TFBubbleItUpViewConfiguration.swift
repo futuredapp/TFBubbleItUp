@@ -9,31 +9,51 @@
 import Foundation
 import UIKit
 
+public enum NumberOfItems {
+    case Unlimited
+    case Quantity(Int)
+}
+
+public typealias Validation = (String) -> Bool
+
 public class TFBubbleItUpViewConfiguration {
     
     /// Background color for cell in normal state
-    public static var viewBackgroundColor = UIColor(red: 0.918, green: 0.933, blue: 0.949, alpha: 1.00)
+    public static var viewBackgroundColor: UIColor = UIColor(red: 0.918, green: 0.933, blue: 0.949, alpha: 1.00)
+    
     /// Background color for cell in edit state
-    public static var editBackgroundColor = UIColor.whiteColor()
+    public static var editBackgroundColor: UIColor = UIColor.whiteColor()
+    
+    /// Background color for cell in invalid state
+    public static var invalidBackgroundColor: UIColor = UIColor.whiteColor()
     
     /// Font for cell in normal state
-    public static var viewFont = UIFont.systemFontOfSize(12.0)
+    public static var viewFont: UIFont = UIFont.systemFontOfSize(12.0)
     
     /// Font for cell in edit state
-    public static var editFont = UIFont.systemFontOfSize(12.0)
+    public static var editFont: UIFont = UIFont.systemFontOfSize(12.0)
+    
+    /// Font for cell in invalid state
+    public static var invalidFont: UIFont = UIFont.systemFontOfSize(12.0)
     
     /// Font color for cell in view state
-    public static var viewFontColor = UIColor(red: 0.353, green: 0.388, blue: 0.431, alpha: 1.00)
+    public static var viewFontColor: UIColor = UIColor(red: 0.353, green: 0.388, blue: 0.431, alpha: 1.00)
     
     /// Font color for cell in edit state
-    public static var editFontColor = UIColor(red: 0.510, green: 0.553, blue: 0.596, alpha: 1.00)
+    public static var editFontColor: UIColor = UIColor(red: 0.510, green: 0.553, blue: 0.596, alpha: 1.00)
+
+    /// Font color for cell in invalid state
+    public static var invalidFontColor: UIColor = UIColor(red: 0.510, green: 0.553, blue: 0.596, alpha: 1.00)
     
     /// Corner radius for cell in view state
     public static var viewCornerRadius: Float = 2.0
     
     /// Corner radius for cell in edit state
     public static var editCornerRadius: Float = 2.0
-    
+
+    /// Corner radius for cell in invalid state
+    public static var invalidCornerRadius: Float = 2.0
+
     /// Height for item
     public static var cellHeight: Float = 25.0
     
@@ -64,5 +84,10 @@ public class TFBubbleItUpViewConfiguration {
     /// If true it creates new item when user press the keyboards return key. Otherwise resigns first responder
     public static var skipOnReturnKey: Bool = false
     
+    /// Number of items that could be written
+    public static var numberOfItems: NumberOfItems = .Unlimited
+    
+    /// Item has to pass validation before it can be bubbled
+    public static var itemValidation: Validation? = nil
     
 }

@@ -22,6 +22,12 @@ class ViewController: UIViewController, TFBubbleItUpViewDelegate {
         
         // Set bubbleItUpDelegate delegate
         self.bubbleItUpView.bubbleItUpDelegate = self
+        
+        let validation = TFBubbleItUpValidation.testEmptiness() |>> TFBubbleItUpValidation.testEmailAddress()
+        TFBubbleItUpViewConfiguration.itemValidation = validation
+        
+        TFBubbleItUpViewConfiguration.numberOfItems = .Quantity(5)
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,7 +38,7 @@ class ViewController: UIViewController, TFBubbleItUpViewDelegate {
     // MARK:- TFBubbleItUpDelegate
     
     func bubbleItUpViewDidFinishEditingBubble(view: TFBubbleItUpView, text: String) {
-        self.textLabel.text = view.stringItems().joinWithSeparator(", ")
+        self.textLabel.text = view.validStrings().joinWithSeparator(", ")
     }
     
 }

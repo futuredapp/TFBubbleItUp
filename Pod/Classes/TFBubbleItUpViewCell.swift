@@ -9,7 +9,7 @@
 import UIKit
 
 enum TFBubbleItUpViewCellMode {
-    case Edit, View
+    case Edit, View, Invalid
 }
 
 protocol TFBubbleItUpViewCellDelegate {
@@ -106,6 +106,12 @@ class TFBubbleItUpViewCell: UICollectionViewCell, UITextFieldDelegate {
             textField.textColor = TFBubbleItUpViewConfiguration.viewFontColor
             self.backgroundColor = TFBubbleItUpViewConfiguration.viewBackgroundColor
             self.layer.cornerRadius = CGFloat(TFBubbleItUpViewConfiguration.viewCornerRadius)
+        case .Invalid:
+            textField.backgroundColor = TFBubbleItUpViewConfiguration.invalidBackgroundColor
+            textField.font = TFBubbleItUpViewConfiguration.invalidFont
+            textField.textColor = TFBubbleItUpViewConfiguration.invalidFontColor
+            self.backgroundColor = TFBubbleItUpViewConfiguration.invalidBackgroundColor
+            self.layer.cornerRadius = CGFloat(TFBubbleItUpViewConfiguration.invalidCornerRadius)
         }
         
         self.mode = mode
@@ -126,13 +132,25 @@ class TFBubbleItUpViewCell: UICollectionViewCell, UITextFieldDelegate {
         return true
     }
     
+    override func resignFirstResponder() -> Bool {
+        self.textField.resignFirstResponder()
+        return true
+    }
+    
+    func configureWithItem(item: TFBubbleItem) {
+        self.textField.text = item.text
+        self.setMode(TFBubbleItUpValidation.isValid(textField.text) ? .View : .Invalid)
+    }
+    
     // MARK:- UITextField delegate
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         
-        if string == " " && TFBubbleItUpViewConfiguration.skipOnWhitespace {
+        if string == " " && TFBubbleItUpViewConfiguration.skipOnWhitespace && TFBubbleItUpValidation.isValid(self.textField.text) {
             self.delegate?.createAndSwitchToNewCell(self)
             
+            return false
+        } else if string == " " && TFBubbleItUpViewConfiguration.skipOnWhitespace {
             return false
         } else {
             return self.mode == .Edit
@@ -143,7 +161,13 @@ class TFBubbleItUpViewCell: UICollectionViewCell, UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         
         if (TFBubbleItUpViewConfiguration.skipOnReturnKey) {
-            self.delegate?.createAndSwitchToNewCell(self)
+            
+            if !TFBubbleItUpValidation.isValid(textField.text) {
+                
+                return false
+            } else {
+                self.delegate?.createAndSwitchToNewCell(self)
+            }
         } else {
             self.textField.resignFirstResponder()
         }
@@ -163,10 +187,12 @@ class TFBubbleItUpViewCell: UICollectionViewCell, UITextFieldDelegate {
     }
     
     func editingDidEnd(textField: UITextField) {
-        self.setMode(.View)
+        
+        self.setMode(TFBubbleItUpValidation.isValid(textField.text) ? .View : .Invalid)
         
         self.delegate?.editingDidEnd(self, text: textField.text ?? "")
     }
+    
     
     
 }

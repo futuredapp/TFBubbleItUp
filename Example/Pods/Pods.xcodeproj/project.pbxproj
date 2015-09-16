@@ -7,42 +7,43 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0D748F50FDDDC969DB36DBE8472867C4 /* TFBubbleItUpViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C52FF3C79120C420FADF8DF2EDBEF9 /* TFBubbleItUpViewFlowLayout.swift */; };
-		1EFDD70D87F570EBDE16AEC93B4FC117 /* TFBubbleItUp-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BBE7BEC39033C51DF8DAF1613A52EFDE /* TFBubbleItUp-dummy.m */; };
-		369D3AFBE2574909E7BF546D1DFF66C5 /* TFBubbleItUp-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2853E842E48DEF59A48AE122CE7602B9 /* TFBubbleItUp-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0C5DF1C7C3BFE98BDBD927775EE1F869 /* TFBubbleItUpViewConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE182C440214B9C4A3FD32B2B6816FB /* TFBubbleItUpViewConfiguration.swift */; };
 		3FD86E9148CC1653DF2BF54D33579FA3 /* Pods-TFBubbleItUp_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 932F0ED886DEE92E537463BA84731AAA /* Pods-TFBubbleItUp_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5B4C13D394EE54D6C5CA13A5768DCD45 /* TFBubbleItUpViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929A58E77A20DAFEA404D240B4C78572 /* TFBubbleItUpViewFlowLayout.swift */; };
+		69788AEC089ECE66BCDDB29D677D58F5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76EE817506411D3FC19526B3DDC3EA2C /* Foundation.framework */; };
+		6B80CC63E36AFB4C5FB602E3447D653C /* TFBubbleItUpValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA32F685589A368086CB4C34242BAC0 /* TFBubbleItUpValidation.swift */; };
+		828DDA28F05524A421BEB143D7D9702C /* TFBubbleItUpViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3784E42E8177B1CDE6D12C4FB38066D0 /* TFBubbleItUpViewCell.swift */; };
 		8CFD6478B3D0F2587058F03930D9DA05 /* Pods-TFBubbleItUp_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 481ADBB699902568F49D1E3AD1509263 /* Pods-TFBubbleItUp_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		91CAC5ADADD00C2B40BAA205D7B559F7 /* TFBubbleItUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3294E9E7736F0BE0ADDBD3E60FE8D1C1 /* TFBubbleItUpView.swift */; };
 		945A405F02F6D5BE409A4D8B0FFF4922 /* Pods-TFBubbleItUp_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E90663F0F94056FDF18061D90BD329F /* Pods-TFBubbleItUp_Tests-dummy.m */; };
-		976A9AC0635D680494FD20458E973328 /* TFBubbleItUpViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33432D41036E1E9300A14C7C36133B91 /* TFBubbleItUpViewCell.swift */; };
-		A51EF2ACBA512D879CEE5208E0FCE332 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E989B684138C1CEEDB5F500B1CFF747 /* Foundation.framework */; };
-		A584C9D398E6395B8CEE295BFB3EEA7D /* TFBubbleItUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5498B5310A711259EF1A7D39072EA208 /* TFBubbleItUpView.swift */; };
-		D3E1195CC2B8D5FF4A1B94284F361EBD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E989B684138C1CEEDB5F500B1CFF747 /* Foundation.framework */; };
-		DEEC4AE805996AA5F5D93D4B7230FBCA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E989B684138C1CEEDB5F500B1CFF747 /* Foundation.framework */; };
-		DF891529E3981C50630747E10230A8A8 /* TFBubbleItUpViewConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5103591E6C07F3D8A26DFF521909FE /* TFBubbleItUpViewConfiguration.swift */; };
-		EEE9240EED0631CD4F2F42277640724E /* TFBubbleItUp.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 148CF5924DCBA11716895531EA4A1F60 /* TFBubbleItUp.bundle */; };
+		A69ED4B94CC2C1CF628C59C944CE5890 /* TFBubbleItUp-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = FB0B73B587156D6F87FE57CAF5AFAB83 /* TFBubbleItUp-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B33C7E7F4A842F3B14F02EE5F419546C /* TFBubbleItUp.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 148CF5924DCBA11716895531EA4A1F60 /* TFBubbleItUp.bundle */; };
+		D3E1195CC2B8D5FF4A1B94284F361EBD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76EE817506411D3FC19526B3DDC3EA2C /* Foundation.framework */; };
+		D4645A038441CE259069E913957112DE /* TFBubbleItUp-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D71EE16AA3EFE07DD4711C0E85341A6 /* TFBubbleItUp-dummy.m */; };
+		DEEC4AE805996AA5F5D93D4B7230FBCA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76EE817506411D3FC19526B3DDC3EA2C /* Foundation.framework */; };
 		F1996A21731C6DF500BA1E776A8FDDA6 /* Pods-TFBubbleItUp_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B863F6CB2B8194A15A727F993CC2520 /* Pods-TFBubbleItUp_Example-dummy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		00DBE530A59FF88FECF52419A8BB10C1 /* PBXContainerItemProxy */ = {
+		8201F36859725CBD52132160C42F7507 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 4FC5DE6B5E7AA6E8B25EC800DEA40DB1;
+			remoteGlobalIDString = 3C9ED621E712BFD95626DE35C576303B;
 			remoteInfo = TFBubbleItUp;
 		};
-		285B4A98DF724359A61DFFF9B7F04CE3 /* PBXContainerItemProxy */ = {
+		9B371E022F41CB4A4CC4EC79B92E863D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = A7AFB964226137DA118BC03C7FFF10F6;
 			remoteInfo = "TFBubbleItUp-TFBubbleItUp";
 		};
-		6930D6D460A3E2879641CF3138C9B8FB /* PBXContainerItemProxy */ = {
+		C9E271B289BDD6F347D8CC1FF27BD644 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 4FC5DE6B5E7AA6E8B25EC800DEA40DB1;
+			remoteGlobalIDString = 3C9ED621E712BFD95626DE35C576303B;
 			remoteInfo = TFBubbleItUp;
 		};
 /* End PBXContainerItemProxy section */
@@ -50,29 +51,28 @@
 /* Begin PBXFileReference section */
 		043FDCF75E3DEF7220D83933F88C5B8C /* Pods_TFBubbleItUp_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TFBubbleItUp_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		06417B271E634B8D6865548C682DC3A2 /* Pods-TFBubbleItUp_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TFBubbleItUp_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		0C5103591E6C07F3D8A26DFF521909FE /* TFBubbleItUpViewConfiguration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TFBubbleItUpViewConfiguration.swift; sourceTree = "<group>"; };
+		0D71EE16AA3EFE07DD4711C0E85341A6 /* TFBubbleItUp-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TFBubbleItUp-dummy.m"; sourceTree = "<group>"; };
+		133D70F7502A193CD86B5F2B1E498F0E /* TFBubbleItUp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TFBubbleItUp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		148CF5924DCBA11716895531EA4A1F60 /* TFBubbleItUp.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TFBubbleItUp.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		16943C62E0DFC8A56043712A32BDB07B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		197AA556F8719C853436144DC6EDB429 /* Pods-TFBubbleItUp_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-TFBubbleItUp_Example.modulemap"; sourceTree = "<group>"; };
 		1B863F6CB2B8194A15A727F993CC2520 /* Pods-TFBubbleItUp_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TFBubbleItUp_Example-dummy.m"; sourceTree = "<group>"; };
 		1E90663F0F94056FDF18061D90BD329F /* Pods-TFBubbleItUp_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TFBubbleItUp_Tests-dummy.m"; sourceTree = "<group>"; };
 		212D44FE5A0DD3C4F552C8C4B47A010D /* Pods-TFBubbleItUp_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TFBubbleItUp_Example-frameworks.sh"; sourceTree = "<group>"; };
-		2853E842E48DEF59A48AE122CE7602B9 /* TFBubbleItUp-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TFBubbleItUp-umbrella.h"; sourceTree = "<group>"; };
-		33432D41036E1E9300A14C7C36133B91 /* TFBubbleItUpViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TFBubbleItUpViewCell.swift; sourceTree = "<group>"; };
+		3294E9E7736F0BE0ADDBD3E60FE8D1C1 /* TFBubbleItUpView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TFBubbleItUpView.swift; sourceTree = "<group>"; };
 		368B9137584BE01FCE643D0AF3BC5B47 /* TFBubbleItUp-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TFBubbleItUp-prefix.pch"; sourceTree = "<group>"; };
+		3784E42E8177B1CDE6D12C4FB38066D0 /* TFBubbleItUpViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TFBubbleItUpViewCell.swift; sourceTree = "<group>"; };
 		440029FB325EDC1126C1210B2D8DAA08 /* Pods-TFBubbleItUp_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TFBubbleItUp_Example-resources.sh"; sourceTree = "<group>"; };
-		45C52FF3C79120C420FADF8DF2EDBEF9 /* TFBubbleItUpViewFlowLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TFBubbleItUpViewFlowLayout.swift; sourceTree = "<group>"; };
 		481ADBB699902568F49D1E3AD1509263 /* Pods-TFBubbleItUp_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TFBubbleItUp_Example-umbrella.h"; sourceTree = "<group>"; };
 		4907B7D8FD2F101929ABA76526639239 /* Pods-TFBubbleItUp_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TFBubbleItUp_Example.release.xcconfig"; sourceTree = "<group>"; };
-		5498B5310A711259EF1A7D39072EA208 /* TFBubbleItUpView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TFBubbleItUpView.swift; sourceTree = "<group>"; };
 		54B2B8048E281991CF1A198AFBC50BE9 /* TFBubbleItUp-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "TFBubbleItUp-Private.xcconfig"; sourceTree = "<group>"; };
-		55001A1C25DB2CB0E01F223FFDFFEFF3 /* TFBubbleItUp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TFBubbleItUp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		694340E169375193F5FB807C6997F101 /* Pods-TFBubbleItUp_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TFBubbleItUp_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		6D32C64872F0B9CAA6F4EB2E0473949B /* Pods-TFBubbleItUp_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TFBubbleItUp_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		74929B06C2FE5256651D538FC8DC5505 /* Pods-TFBubbleItUp_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TFBubbleItUp_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		76EE817506411D3FC19526B3DDC3EA2C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		7782BA4E93A0F0F0F20598F39493D2B8 /* Pods-TFBubbleItUp_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TFBubbleItUp_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		7E989B684138C1CEEDB5F500B1CFF747 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		92731869647D51E6D65482FBBD1B9B90 /* Pods_TFBubbleItUp_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TFBubbleItUp_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		929A58E77A20DAFEA404D240B4C78572 /* TFBubbleItUpViewFlowLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TFBubbleItUpViewFlowLayout.swift; sourceTree = "<group>"; };
 		932F0ED886DEE92E537463BA84731AAA /* Pods-TFBubbleItUp_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TFBubbleItUp_Tests-umbrella.h"; sourceTree = "<group>"; };
 		96F395E1EE49B2D798D126E27B7E25BA /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		97E4D3F77D197AD430784D6036DD6015 /* Pods-TFBubbleItUp_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TFBubbleItUp_Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -83,8 +83,10 @@
 		B9931B25BD31B55B9D7BA7DEBA962E51 /* Pods-TFBubbleItUp_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TFBubbleItUp_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		BBDC1C8585A089BAB6E97879CB817156 /* Pods-TFBubbleItUp_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TFBubbleItUp_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		BBE7BEC39033C51DF8DAF1613A52EFDE /* TFBubbleItUp-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TFBubbleItUp-dummy.m"; sourceTree = "<group>"; };
+		CFA32F685589A368086CB4C34242BAC0 /* TFBubbleItUpValidation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TFBubbleItUpValidation.swift; sourceTree = "<group>"; };
 		DC7D80BF39F60D8C355155A556663759 /* Pods-TFBubbleItUp_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TFBubbleItUp_Tests-resources.sh"; sourceTree = "<group>"; };
+		FAE182C440214B9C4A3FD32B2B6816FB /* TFBubbleItUpViewConfiguration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TFBubbleItUpViewConfiguration.swift; sourceTree = "<group>"; };
+		FB0B73B587156D6F87FE57CAF5AFAB83 /* TFBubbleItUp-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TFBubbleItUp-umbrella.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,11 +98,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		15F7D5B2CF760434CD4775C3C9116855 /* Frameworks */ = {
+		49DFE97D7A6FCE23AF6FBE1EAB30BA16 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A51EF2ACBA512D879CEE5208E0FCE332 /* Foundation.framework in Frameworks */,
+				69788AEC089ECE66BCDDB29D677D58F5 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,12 +124,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		112AD986747B45F1BF1731849EDD1B98 /* Pod */ = {
+		066D74880F7792D62115CFEFD0778244 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				F29FC828ACC59ECF23A6F61EB38B3E6E /* Classes */,
+				CFA32F685589A368086CB4C34242BAC0 /* TFBubbleItUpValidation.swift */,
+				3294E9E7736F0BE0ADDBD3E60FE8D1C1 /* TFBubbleItUpView.swift */,
+				3784E42E8177B1CDE6D12C4FB38066D0 /* TFBubbleItUpViewCell.swift */,
+				FAE182C440214B9C4A3FD32B2B6816FB /* TFBubbleItUpViewConfiguration.swift */,
+				929A58E77A20DAFEA404D240B4C78572 /* TFBubbleItUpViewFlowLayout.swift */,
 			);
-			path = Pod;
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		20C9F7F788E7DF91C326943EA3666722 /* Support Files */ = {
@@ -137,9 +143,9 @@
 				B8D32828A6BD72FA5B806F3FCED382E6 /* TFBubbleItUp.modulemap */,
 				B7E677485D83C0982C2BE206907AA9CE /* TFBubbleItUp.xcconfig */,
 				54B2B8048E281991CF1A198AFBC50BE9 /* TFBubbleItUp-Private.xcconfig */,
-				BBE7BEC39033C51DF8DAF1613A52EFDE /* TFBubbleItUp-dummy.m */,
+				0D71EE16AA3EFE07DD4711C0E85341A6 /* TFBubbleItUp-dummy.m */,
 				368B9137584BE01FCE643D0AF3BC5B47 /* TFBubbleItUp-prefix.pch */,
-				2853E842E48DEF59A48AE122CE7602B9 /* TFBubbleItUp-umbrella.h */,
+				FB0B73B587156D6F87FE57CAF5AFAB83 /* TFBubbleItUp-umbrella.h */,
 			);
 			name = "Support Files";
 			path = "Example/Pods/Target Support Files/TFBubbleItUp";
@@ -148,15 +154,23 @@
 		53F661C0CA7190D2CF05023FB33D61E4 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				7E989B684138C1CEEDB5F500B1CFF747 /* Foundation.framework */,
+				76EE817506411D3FC19526B3DDC3EA2C /* Foundation.framework */,
 			);
 			name = iOS;
+			sourceTree = "<group>";
+		};
+		716AF31C4A7F5AED17C5170CABDDE91A /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				066D74880F7792D62115CFEFD0778244 /* Classes */,
+			);
+			path = Pod;
 			sourceTree = "<group>";
 		};
 		7202C850F2D961DF3A5B5F11DB5F50C9 /* TFBubbleItUp */ = {
 			isa = PBXGroup;
 			children = (
-				112AD986747B45F1BF1731849EDD1B98 /* Pod */,
+				716AF31C4A7F5AED17C5170CABDDE91A /* Pod */,
 				20C9F7F788E7DF91C326943EA3666722 /* Support Files */,
 			);
 			name = TFBubbleItUp;
@@ -241,20 +255,9 @@
 				92731869647D51E6D65482FBBD1B9B90 /* Pods_TFBubbleItUp_Example.framework */,
 				043FDCF75E3DEF7220D83933F88C5B8C /* Pods_TFBubbleItUp_Tests.framework */,
 				148CF5924DCBA11716895531EA4A1F60 /* TFBubbleItUp.bundle */,
-				55001A1C25DB2CB0E01F223FFDFFEFF3 /* TFBubbleItUp.framework */,
+				133D70F7502A193CD86B5F2B1E498F0E /* TFBubbleItUp.framework */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		F29FC828ACC59ECF23A6F61EB38B3E6E /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				5498B5310A711259EF1A7D39072EA208 /* TFBubbleItUpView.swift */,
-				33432D41036E1E9300A14C7C36133B91 /* TFBubbleItUpViewCell.swift */,
-				0C5103591E6C07F3D8A26DFF521909FE /* TFBubbleItUpViewConfiguration.swift */,
-				45C52FF3C79120C420FADF8DF2EDBEF9 /* TFBubbleItUpViewFlowLayout.swift */,
-			);
-			path = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -268,11 +271,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		666E520F6FDD36EED8AE973CC47F4C16 /* Headers */ = {
+		12E57EE07F29CA31D49CE9B310BB45E3 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				369D3AFBE2574909E7BF546D1DFF66C5 /* TFBubbleItUp-umbrella.h in Headers */,
+				A69ED4B94CC2C1CF628C59C944CE5890 /* TFBubbleItUp-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,30 +301,30 @@
 			buildRules = (
 			);
 			dependencies = (
-				78C3C6E859181842DB3BBC81D729011B /* PBXTargetDependency */,
+				6F78E26D6E8CA52C41F26B32AEA4965C /* PBXTargetDependency */,
 			);
 			name = "Pods-TFBubbleItUp_Example";
 			productName = "Pods-TFBubbleItUp_Example";
 			productReference = 92731869647D51E6D65482FBBD1B9B90 /* Pods_TFBubbleItUp_Example.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		4FC5DE6B5E7AA6E8B25EC800DEA40DB1 /* TFBubbleItUp */ = {
+		3C9ED621E712BFD95626DE35C576303B /* TFBubbleItUp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 146BC6ED30905D7F1437D7A4E7B9E789 /* Build configuration list for PBXNativeTarget "TFBubbleItUp" */;
+			buildConfigurationList = F2EA82B07953850329ECA506AB9E4CED /* Build configuration list for PBXNativeTarget "TFBubbleItUp" */;
 			buildPhases = (
-				E0DA61A0CDC5FD89CBBACB41CE0766D5 /* Sources */,
-				15F7D5B2CF760434CD4775C3C9116855 /* Frameworks */,
-				BB8CBC8CA877712080F4928C2106309C /* Resources */,
-				666E520F6FDD36EED8AE973CC47F4C16 /* Headers */,
+				2852253884CDE94510B83A3C955DFCB3 /* Sources */,
+				49DFE97D7A6FCE23AF6FBE1EAB30BA16 /* Frameworks */,
+				37D456B94F76E4B7594CE82CBEFDB56E /* Resources */,
+				12E57EE07F29CA31D49CE9B310BB45E3 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				60594C2E33FBA357FF3613AE4475AE34 /* PBXTargetDependency */,
+				E00A7D90A4778F18CE8605E81A761028 /* PBXTargetDependency */,
 			);
 			name = TFBubbleItUp;
 			productName = TFBubbleItUp;
-			productReference = 55001A1C25DB2CB0E01F223FFDFFEFF3 /* TFBubbleItUp.framework */;
+			productReference = 133D70F7502A193CD86B5F2B1E498F0E /* TFBubbleItUp.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		A7AFB964226137DA118BC03C7FFF10F6 /* TFBubbleItUp-TFBubbleItUp */ = {
@@ -352,7 +355,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				12814067FED31589CA2958C17E0CF2B5 /* PBXTargetDependency */,
+				C2CE8DC96D78F0D88EBBD9A7C039BFAB /* PBXTargetDependency */,
 			);
 			name = "Pods-TFBubbleItUp_Tests";
 			productName = "Pods-TFBubbleItUp_Tests";
@@ -382,18 +385,18 @@
 			targets = (
 				3C9B4D11A9D0EAE0BC016F8FF3145651 /* Pods-TFBubbleItUp_Example */,
 				BA934F9E90322F0F6DA614EE19427BC6 /* Pods-TFBubbleItUp_Tests */,
-				4FC5DE6B5E7AA6E8B25EC800DEA40DB1 /* TFBubbleItUp */,
+				3C9ED621E712BFD95626DE35C576303B /* TFBubbleItUp */,
 				A7AFB964226137DA118BC03C7FFF10F6 /* TFBubbleItUp-TFBubbleItUp */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		BB8CBC8CA877712080F4928C2106309C /* Resources */ = {
+		37D456B94F76E4B7594CE82CBEFDB56E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EEE9240EED0631CD4F2F42277640724E /* TFBubbleItUp.bundle in Resources */,
+				B33C7E7F4A842F3B14F02EE5F419546C /* TFBubbleItUp.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,6 +417,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2852253884CDE94510B83A3C955DFCB3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4645A038441CE259069E913957112DE /* TFBubbleItUp-dummy.m in Sources */,
+				6B80CC63E36AFB4C5FB602E3447D653C /* TFBubbleItUpValidation.swift in Sources */,
+				91CAC5ADADD00C2B40BAA205D7B559F7 /* TFBubbleItUpView.swift in Sources */,
+				828DDA28F05524A421BEB143D7D9702C /* TFBubbleItUpViewCell.swift in Sources */,
+				0C5DF1C7C3BFE98BDBD927775EE1F869 /* TFBubbleItUpViewConfiguration.swift in Sources */,
+				5B4C13D394EE54D6C5CA13A5768DCD45 /* TFBubbleItUpViewFlowLayout.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5E1B05AE3F235AEF6BF96201E11F4CAA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -430,38 +446,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E0DA61A0CDC5FD89CBBACB41CE0766D5 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1EFDD70D87F570EBDE16AEC93B4FC117 /* TFBubbleItUp-dummy.m in Sources */,
-				A584C9D398E6395B8CEE295BFB3EEA7D /* TFBubbleItUpView.swift in Sources */,
-				976A9AC0635D680494FD20458E973328 /* TFBubbleItUpViewCell.swift in Sources */,
-				DF891529E3981C50630747E10230A8A8 /* TFBubbleItUpViewConfiguration.swift in Sources */,
-				0D748F50FDDDC969DB36DBE8472867C4 /* TFBubbleItUpViewFlowLayout.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		12814067FED31589CA2958C17E0CF2B5 /* PBXTargetDependency */ = {
+		6F78E26D6E8CA52C41F26B32AEA4965C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = TFBubbleItUp;
-			target = 4FC5DE6B5E7AA6E8B25EC800DEA40DB1 /* TFBubbleItUp */;
-			targetProxy = 00DBE530A59FF88FECF52419A8BB10C1 /* PBXContainerItemProxy */;
+			target = 3C9ED621E712BFD95626DE35C576303B /* TFBubbleItUp */;
+			targetProxy = C9E271B289BDD6F347D8CC1FF27BD644 /* PBXContainerItemProxy */;
 		};
-		60594C2E33FBA357FF3613AE4475AE34 /* PBXTargetDependency */ = {
+		C2CE8DC96D78F0D88EBBD9A7C039BFAB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = TFBubbleItUp;
+			target = 3C9ED621E712BFD95626DE35C576303B /* TFBubbleItUp */;
+			targetProxy = 8201F36859725CBD52132160C42F7507 /* PBXContainerItemProxy */;
+		};
+		E00A7D90A4778F18CE8605E81A761028 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "TFBubbleItUp-TFBubbleItUp";
 			target = A7AFB964226137DA118BC03C7FFF10F6 /* TFBubbleItUp-TFBubbleItUp */;
-			targetProxy = 285B4A98DF724359A61DFFF9B7F04CE3 /* PBXContainerItemProxy */;
-		};
-		78C3C6E859181842DB3BBC81D729011B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = TFBubbleItUp;
-			target = 4FC5DE6B5E7AA6E8B25EC800DEA40DB1 /* TFBubbleItUp */;
-			targetProxy = 6930D6D460A3E2879641CF3138C9B8FB /* PBXContainerItemProxy */;
+			targetProxy = 9B371E022F41CB4A4CC4EC79B92E863D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -497,33 +501,6 @@
 				STRIP_INSTALLED_PRODUCT = NO;
 				SYMROOT = "${SRCROOT}/../build";
 				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		18D6504428C846940F99F642BC7BB1D6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 54B2B8048E281991CF1A198AFBC50BE9 /* TFBubbleItUp-Private.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 0.1.0;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 0.1.0;
-				DYLIB_CURRENT_VERSION = "$(CURRENT_PROJECT_VERSION)";
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/TFBubbleItUp/TFBubbleItUp-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/TFBubbleItUp/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/TFBubbleItUp/TFBubbleItUp.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = TFBubbleItUp;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
@@ -595,14 +572,14 @@
 			};
 			name = Debug;
 		};
-		579ADBE3D6F7EA246989D6E108474786 /* Debug */ = {
+		882E198B52AA867E567BC6817F5A9557 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 54B2B8048E281991CF1A198AFBC50BE9 /* TFBubbleItUp-Private.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 0.1.0;
+				CURRENT_PROJECT_VERSION = 1.1.0;
 				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 0.1.0;
+				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -612,16 +589,15 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/TFBubbleItUp/TFBubbleItUp.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = TFBubbleItUp;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
 		};
 		BAB27C0886728BE002CBB888DC9E27D7 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -646,6 +622,34 @@
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = Release;
+		};
+		D3CA32B75AA6894D330421A1FFB5DAE8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 54B2B8048E281991CF1A198AFBC50BE9 /* TFBubbleItUp-Private.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1.1.0;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = "$(CURRENT_PROJECT_VERSION)";
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/TFBubbleItUp/TFBubbleItUp-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/TFBubbleItUp/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/TFBubbleItUp/TFBubbleItUp.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = TFBubbleItUp;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
 		};
 		DD7C658DF4016CF55957160BC84DFE0B /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -748,15 +752,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		146BC6ED30905D7F1437D7A4E7B9E789 /* Build configuration list for PBXNativeTarget "TFBubbleItUp" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				579ADBE3D6F7EA246989D6E108474786 /* Debug */,
-				18D6504428C846940F99F642BC7BB1D6 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -780,6 +775,15 @@
 			buildConfigurations = (
 				BAB27C0886728BE002CBB888DC9E27D7 /* Debug */,
 				C6E1866B568F2F9229444A38592A0039 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F2EA82B07953850329ECA506AB9E4CED /* Build configuration list for PBXNativeTarget "TFBubbleItUp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D3CA32B75AA6894D330421A1FFB5DAE8 /* Debug */,
+				882E198B52AA867E567BC6817F5A9557 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

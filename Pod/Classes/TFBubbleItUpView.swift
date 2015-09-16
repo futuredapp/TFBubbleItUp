@@ -39,6 +39,7 @@ public struct TFBubbleItem {
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: TFBubbleItUpViewFlowLayout())
         self.customInit()
+        
     }
     
     func customInit() {
@@ -97,6 +98,18 @@ public struct TFBubbleItem {
         return stringArray
     }
     
+    public func validStrings() -> [String] {
+        var stringArray: [String] = []
+        
+        for item in self.items {
+            if item.text != "" && TFBubbleItUpValidation.isValid(item.text) {
+                stringArray.append(item.text)
+            }
+        }
+        
+        return stringArray
+    }
+    
     // MARK:- Autolayout
     
     override public func intrinsicContentSize() -> CGSize {
@@ -139,7 +152,7 @@ public struct TFBubbleItem {
     
     func didTapOnView(sender: AnyObject) {
         
-        if self.items.last?.text == "" {
+        if let last = self.items.last where last.text == "" || !isTextValid(last.text) || self.items.count == self.needPreciseNumberOfItems() {
             self.cellForItemAtIndexPath(NSIndexPath(forItem: self.items.count - 1, inSection: 0))?.becomeFirstResponder()
         } else {
             self.items.append(TFBubbleItem(text: "", becomeFirstResponder: true)) // insert new data item at the end
@@ -154,6 +167,14 @@ public struct TFBubbleItem {
         }
     }
     
+    func isTextValid(text: String) -> Bool {
+        if let validation = TFBubbleItUpViewConfiguration.itemValidation {
+            return validation(text)
+        } else {
+            return true
+        }
+    }
+    
     // MARK:- UICollectionViewDelegate and datasource
     
     public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -161,16 +182,19 @@ public struct TFBubbleItem {
 
         cell.delegate = self;
         
+        let item = self.items[indexPath.item]
+        cell.configureWithItem(item)
+        
+        return cell
+    }
+    
+    public func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
         var item = self.items[indexPath.item]
-        cell.textField.text = item.text
-        cell.setMode(.View)
         
         if item.becomeFirstResponder {
             cell.becomeFirstResponder()
             item.becomeFirstResponder = false
         }
-        
-        return cell
     }
     
     public func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -228,8 +252,13 @@ public struct TFBubbleItem {
         
         cell.setMode(.View)
         
-        // Create indexPath for item next to current
-        let newIndexPath = NSIndexPath(forItem: indexPath.item + 1, inSection: indexPath.section)
+        if let preciseNumber = self.needPreciseNumberOfItems() where self.items.count == preciseNumber { // If we reach quantity, return
+            cell.resignFirstResponder()
+            return
+        }
+        
+        // Create indexPath for the last item
+        let newIndexPath = NSIndexPath(forItem: self.items.count - 1, inSection: indexPath.section)
         
         // If the next cell is empty, move to it. Otherwise create new.
         if let nextCell = self.cellForItemAtIndexPath(newIndexPath) as? TFBubbleItUpViewCell where nextCell.textField.text == "" {
@@ -237,11 +266,12 @@ public struct TFBubbleItem {
             nextCell.becomeFirstResponder()
             
         } else {
-            self.items.insert(TFBubbleItem(text: "", becomeFirstResponder: true), atIndex: newIndexPath.item) // insert new data item
+            self.items.append(TFBubbleItem(text: "", becomeFirstResponder: true)) // insert new data item
             
             // Update collectionView
             self.performBatchUpdates({ () -> Void in
-                self.insertItemsAtIndexPaths([newIndexPath])
+                let newLastIndexPath = NSIndexPath(forItem: self.items.count - 1, inSection: indexPath.section)
+                self.insertItemsAtIndexPaths([newLastIndexPath])
                 }) { (finished) -> Void in
                     // Invalidate intrinsic size when done
                     self.invalidateIntrinsicContentSize(nil)
@@ -258,9 +288,7 @@ public struct TFBubbleItem {
             return
         }
         
-        let isLast = self.items.count - 1 == indexPath.item
-        
-        if text == "" && !isLast {
+        if text == "" {
             self.items.removeAtIndex(indexPath.item)
             
             // Update collectionView
@@ -272,6 +300,17 @@ public struct TFBubbleItem {
             }
         } else if text != "" {
             self.bubbleItUpDelegate?.bubbleItUpViewDidFinishEditingBubble(self, text: text)
+        }
+    }
+    
+    // MARK: - Helpers
+    
+    func needPreciseNumberOfItems() -> Int? {
+        switch TFBubbleItUpViewConfiguration.numberOfItems {
+        case .Unlimited:
+            return nil
+        case let .Quantity(value):
+            return value
         }
     }
 }
