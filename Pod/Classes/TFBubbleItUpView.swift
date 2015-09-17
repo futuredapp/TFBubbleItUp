@@ -80,7 +80,8 @@ public struct TFBubbleItem {
     
     /// Sets new items and reloads sizes
     func setItems(items: [TFBubbleItem]) {
-        self.items = items // Set new items
+        
+        self.items = items
         
         CATransaction.begin()
         CATransaction.setCompletionBlock { () -> Void in
@@ -93,36 +94,69 @@ public struct TFBubbleItem {
         CATransaction.commit()
     }
     
+    public func setStringItems(items: [String]) {
+        // Set new items
+        let bubbleItems = items.map({ (text) -> TFBubbleItem in
+            return TFBubbleItem(text: text)
+        })
+        
+        self.setItems(bubbleItems)
+    }
+    
     /// Returns all non-empty items
     public func stringItems() -> [String] {
         
-        var stringArray: [String] = []
-        
-        for item in self.items {
-            if item.text != "" {
-                stringArray.append(item.text)
-            }
-        }
-        
-        return stringArray
+        return self.items.filter({ (item) -> Bool in item.text != "" }).map({ (item) -> String in item.text })
     }
     
     /// Returns all valid strings
     public func validStrings() -> [String] {
-        var stringArray: [String] = []
         
-        for item in self.items {
-            if item.text != "" && TFBubbleItUpValidation.isValid(item.text) {
-                stringArray.append(item.text)
-            }
-        }
-        
-        return stringArray
+        return self.items.filter({ (item) -> Bool in item.text != "" && TFBubbleItUpValidation.isValid(item.text) }).map({ (item) -> String in item.text })
     }
     
     public func setPlaceholderText(text: String) {
         self.placeholderLabel.text = text
     }
+    
+    /// Adds item if possible, returning Bool indicates success or failure
+    public func addStringItem(text: String) -> Bool {
+        
+        if self.items.count == self.needPreciseNumberOfItems() && self.items.last?.text != "" {
+            
+            return false
+        }
+            
+        if var last = self.items.last where last.text == ""  {
+            last.text = text
+            
+            if let cell = self.cellForItemAtIndexPath(NSIndexPath(forItem: self.items.count - 1, inSection: 0)) as? TFBubbleItUpViewCell {
+                cell.configureWithItem(last)
+                cell.resignFirstResponder()
+                self.needUpdateLayout(cell)
+            }
+        } else {
+//            self.insertItemAtIndex(text, index: self.items.count)
+            
+            self.items.append(TFBubbleItem(text: text))
+            
+            self.performBatchUpdates({ () -> Void in
+                let newLastIndexPath = NSIndexPath(forItem: self.items.count - 1, inSection: 0)
+                self.insertItemsAtIndexPaths([newLastIndexPath])
+                }) { (finished) -> Void in
+                    // Invalidate intrinsic size when done
+                    self.invalidateIntrinsicContentSize(nil)
+                    // The new cell should now become the first reponder
+                    //self.cellForItemAtIndexPath(newIndexPath)?.becomeFirstResponder()
+            }
+        }
+        
+        return true
+    }
+    
+//    func insertItemAtIndex(text: String, index: Int) {
+//        
+//    }
     
     // MARK:- Autolayout
     
@@ -242,7 +276,7 @@ public struct TFBubbleItem {
         self.sizingCell.textField.text = item.text
         let size = self.sizingCell.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize)
         
-        return CGSizeMake(size.width, CGFloat(TFBubbleItUpViewConfiguration.cellHeight))
+        return CGSizeMake(max(size.width, CGRectGetWidth(self.bounds) - 2), CGFloat(TFBubbleItUpViewConfiguration.cellHeight))
     }
     
     // MARK:- TFContactCollectionCellDelegate
@@ -315,7 +349,6 @@ public struct TFBubbleItem {
         }
         
         if text == "" {
-            
             
             self.items.removeAtIndex(indexPath.item)
             
