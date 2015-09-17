@@ -43,7 +43,7 @@ public class TFBubbleItUpValidation {
         if let t = text, let validation = TFBubbleItUpViewConfiguration.itemValidation {
             return validation(t)
         } else {
-            return false
+            return true
         }
     }
 }
