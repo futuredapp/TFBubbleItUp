@@ -41,7 +41,7 @@ class ViewController: UIViewController, TFBubbleItUpViewDelegate {
     }
 
     @IBAction func removeLast(sender: AnyObject) {
-        
+        self.bubbleItUpView.removeStringItem("ales@thefuntasty.com")
     }
     // MARK:- TFBubbleItUpDelegate
     

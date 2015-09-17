@@ -127,17 +127,15 @@ public struct TFBubbleItem {
             return false
         }
             
-        if var last = self.items.last where last.text == ""  {
-            last.text = text
+        if self.items.last != nil && self.items.last!.text == ""  {
+            self.items[self.items.count - 1].text = text
             
             if let cell = self.cellForItemAtIndexPath(NSIndexPath(forItem: self.items.count - 1, inSection: 0)) as? TFBubbleItUpViewCell {
-                cell.configureWithItem(last)
+                cell.configureWithItem(self.items[self.items.count - 1])
                 cell.resignFirstResponder()
                 self.needUpdateLayout(cell)
             }
         } else {
-//            self.insertItemAtIndex(text, index: self.items.count)
-            
             self.items.append(TFBubbleItem(text: text))
             
             self.performBatchUpdates({ () -> Void in
@@ -154,9 +152,27 @@ public struct TFBubbleItem {
         return true
     }
     
-//    func insertItemAtIndex(text: String, index: Int) {
-//        
-//    }
+    public func removeStringItem(text: String) -> Bool {
+        let index = self.items.indexOf { (item) -> Bool in item.text == text }
+        
+        guard let i = index else {
+            
+            return false
+        }
+        
+        self.items.removeAtIndex(i)
+        
+        self.performBatchUpdates({ () -> Void in
+            let newLastIndexPath = NSIndexPath(forItem: i, inSection: 0)
+            self.deleteItemsAtIndexPaths([newLastIndexPath])
+            
+            }) { (finished) -> Void in
+                // Invalidate intrinsic size when done
+                self.invalidateIntrinsicContentSize(nil)
+        }
+        
+        return true
+    }
     
     // MARK:- Autolayout
     
@@ -276,7 +292,10 @@ public struct TFBubbleItem {
         self.sizingCell.textField.text = item.text
         let size = self.sizingCell.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize)
         
-        return CGSizeMake(max(size.width, CGRectGetWidth(self.bounds) - 2), CGFloat(TFBubbleItUpViewConfiguration.cellHeight))
+        let layoutInset = (self.collectionViewLayout as! UICollectionViewFlowLayout).sectionInset
+        let maximumWidth = CGRectGetWidth(self.bounds) - layoutInset.left - layoutInset.right
+        
+        return CGSizeMake(min(size.width, maximumWidth), CGFloat(TFBubbleItUpViewConfiguration.cellHeight))
     }
     
     // MARK:- TFContactCollectionCellDelegate

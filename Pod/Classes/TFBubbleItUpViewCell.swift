@@ -33,7 +33,7 @@ class TFBubbleItUpViewCell: UICollectionViewCell, UITextFieldDelegate {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
+        self.clipsToBounds = true
     }
 
     override init(frame: CGRect) {
