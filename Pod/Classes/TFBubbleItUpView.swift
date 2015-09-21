@@ -20,6 +20,8 @@ public struct TFBubbleItem {
 
 @objc public protocol TFBubbleItUpViewDelegate {
     func bubbleItUpViewDidFinishEditingBubble(view: TFBubbleItUpView, text: String)
+    
+    optional func bubbleItUpViewDidChange(view: TFBubbleItUpView)
 }
 
 @IBDesignable public class TFBubbleItUpView: UICollectionView, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UIGestureRecognizerDelegate, TFBubbleItUpViewCellDelegate {
@@ -304,6 +306,8 @@ public struct TFBubbleItem {
         if let indexPath = self.indexPathForCell(cell) {
             self.items[indexPath.item].text = text
         }
+        
+        self.bubbleItUpDelegate?.bubbleItUpViewDidChange?(self)
     }
 
     internal func needUpdateLayout(cell: TFBubbleItUpViewCell) {
