@@ -137,6 +137,8 @@ public struct TFBubbleItem {
                 cell.resignFirstResponder()
                 self.needUpdateLayout(cell)
             }
+            self.bubbleItUpDelegate?.bubbleItUpViewDidChange?(self)
+            
         } else {
             self.items.append(TFBubbleItem(text: text))
             
@@ -148,6 +150,7 @@ public struct TFBubbleItem {
                     self.invalidateIntrinsicContentSize(nil)
                     // The new cell should now become the first reponder
                     //self.cellForItemAtIndexPath(newIndexPath)?.becomeFirstResponder()
+                    self.bubbleItUpDelegate?.bubbleItUpViewDidChange?(self)
             }
         }
         
@@ -171,6 +174,7 @@ public struct TFBubbleItem {
             }) { (finished) -> Void in
                 // Invalidate intrinsic size when done
                 self.invalidateIntrinsicContentSize(nil)
+                self.bubbleItUpDelegate?.bubbleItUpViewDidChange?(self)
         }
         
         return true
