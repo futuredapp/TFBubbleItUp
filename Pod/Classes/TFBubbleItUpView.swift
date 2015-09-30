@@ -21,7 +21,7 @@ public struct TFBubbleItem {
 @objc public protocol TFBubbleItUpViewDelegate {
     func bubbleItUpViewDidFinishEditingBubble(view: TFBubbleItUpView, text: String)
     
-    optional func bubbleItUpViewDidChange(view: TFBubbleItUpView)
+    optional func bubbleItUpViewDidChange(view: TFBubbleItUpView, text: String)
 }
 
 @IBDesignable public class TFBubbleItUpView: UICollectionView, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UIGestureRecognizerDelegate, TFBubbleItUpViewCellDelegate {
@@ -137,7 +137,7 @@ public struct TFBubbleItem {
                 cell.resignFirstResponder()
                 self.needUpdateLayout(cell)
             }
-            self.bubbleItUpDelegate?.bubbleItUpViewDidChange?(self)
+            self.bubbleItUpDelegate?.bubbleItUpViewDidChange?(self, text:text)
             
         } else {
             self.items.append(TFBubbleItem(text: text))
@@ -150,7 +150,7 @@ public struct TFBubbleItem {
                     self.invalidateIntrinsicContentSize(nil)
                     // The new cell should now become the first reponder
                     //self.cellForItemAtIndexPath(newIndexPath)?.becomeFirstResponder()
-                    self.bubbleItUpDelegate?.bubbleItUpViewDidChange?(self)
+                    self.bubbleItUpDelegate?.bubbleItUpViewDidChange?(self, text:text)
             }
         }
         
@@ -174,8 +174,15 @@ public struct TFBubbleItem {
             }) { (finished) -> Void in
                 // Invalidate intrinsic size when done
                 self.invalidateIntrinsicContentSize(nil)
-                self.bubbleItUpDelegate?.bubbleItUpViewDidChange?(self)
+                self.bubbleItUpDelegate?.bubbleItUpViewDidChange?(self, text:text)
         }
+        
+        return true
+    }
+    
+    public override func becomeFirstResponder() -> Bool {
+        
+        self.didTapOnView(self)
         
         return true
     }
@@ -311,7 +318,7 @@ public struct TFBubbleItem {
             self.items[indexPath.item].text = text
         }
         
-        self.bubbleItUpDelegate?.bubbleItUpViewDidChange?(self)
+        self.bubbleItUpDelegate?.bubbleItUpViewDidChange?(self, text:text)
     }
 
     internal func needUpdateLayout(cell: TFBubbleItUpViewCell) {
@@ -390,7 +397,7 @@ public struct TFBubbleItem {
                         self.placeholderLabel.hidden = false
                     }
             }
-        } else if text != "" {
+        } else {
             self.bubbleItUpDelegate?.bubbleItUpViewDidFinishEditingBubble(self, text: text)
         }
     }
