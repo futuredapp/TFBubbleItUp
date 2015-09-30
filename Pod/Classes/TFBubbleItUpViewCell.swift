@@ -17,6 +17,7 @@ protocol TFBubbleItUpViewCellDelegate {
     func needUpdateLayout(cell: TFBubbleItUpViewCell)
     func createAndSwitchToNewCell(cell: TFBubbleItUpViewCell)
     func editingDidEnd(cell: TFBubbleItUpViewCell, text: String)
+    func shouldDeleteCellInFrontOfCell(cell: TFBubbleItUpViewCell)
 }
 
 class TFBubbleItUpViewCell: UICollectionViewCell, UITextFieldDelegate {
@@ -50,7 +51,7 @@ class TFBubbleItUpViewCell: UICollectionViewCell, UITextFieldDelegate {
         self.layer.cornerRadius = 2.0
         self.layer.masksToBounds = true
         
-        self.textField = UITextField()
+        self.textField = TFTextField()
         
         self.textField.translatesAutoresizingMaskIntoConstraints = false
         
@@ -149,13 +150,16 @@ class TFBubbleItUpViewCell: UICollectionViewCell, UITextFieldDelegate {
         if string == " " && TFBubbleItUpViewConfiguration.skipOnWhitespace && TFBubbleItUpValidation.isValid(self.textField.text) {
             self.delegate?.createAndSwitchToNewCell(self)
             
-            return false
         } else if string == " " && TFBubbleItUpViewConfiguration.skipOnWhitespace {
-            return false
+            
+        } else if string == "" && textField.text == "" {
+            self.delegate?.shouldDeleteCellInFrontOfCell(self)
+            
         } else {
             return self.mode == .Edit
         }
         
+        return false
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {

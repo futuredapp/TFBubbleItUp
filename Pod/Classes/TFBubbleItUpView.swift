@@ -18,6 +18,10 @@ public struct TFBubbleItem {
     }
 }
 
+enum DataSourceOperationError: ErrorType {
+    case OutOfBounds
+}
+
 @objc public protocol TFBubbleItUpViewDelegate {
     func bubbleItUpViewDidFinishEditingBubble(view: TFBubbleItUpView, text: String)
     
@@ -402,7 +406,53 @@ public struct TFBubbleItem {
         }
     }
     
+    func shouldDeleteCellInFrontOfCell(cell: TFBubbleItUpViewCell) {
+        
+        guard let cellsIndexPath = self.indexPathForCell(cell) else {
+            assertionFailure("There should be a index for that cell!")
+            return
+        }
+        
+        let itemIndex = cellsIndexPath.item
+        
+        // Don't do anything if there is only one item
+        if itemIndex == 0 {
+            return
+        }
+        
+        let previousItemIndex = itemIndex - 1
+        
+        // Remove item
+        
+        do {
+            try self.removeItemAtIndex(previousItemIndex, completion: nil)
+        } catch DataSourceOperationError.OutOfBounds {
+            print("Error occured while removing item")
+        } catch {
+            
+        }
+    }
+    
     // MARK: - Helpers
+    
+    func removeItemAtIndex(index: Int, completion: (() -> ())?) throws {
+        
+        if self.items.count <= index || index < 0 {
+            throw DataSourceOperationError.OutOfBounds
+        }
+        
+        self.items.removeAtIndex(index)
+        
+        // Update collectionView
+        self.performBatchUpdates({ () -> Void in
+            self.deleteItemsAtIndexPaths([NSIndexPath(forItem: index, inSection: 0)])
+            
+            }) {[weak self] (finished) -> Void in
+                // Invalidate intrinsic size when done
+                self?.invalidateIntrinsicContentSize(nil)
+                completion?()
+        }
+    }
     
     func needPreciseNumberOfItems() -> Int? {
         switch TFBubbleItUpViewConfiguration.numberOfItems {

@@ -14,6 +14,7 @@
 		6B80CC63E36AFB4C5FB602E3447D653C /* TFBubbleItUpValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA32F685589A368086CB4C34242BAC0 /* TFBubbleItUpValidation.swift */; };
 		828DDA28F05524A421BEB143D7D9702C /* TFBubbleItUpViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3784E42E8177B1CDE6D12C4FB38066D0 /* TFBubbleItUpViewCell.swift */; };
 		8CFD6478B3D0F2587058F03930D9DA05 /* Pods-TFBubbleItUp_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 481ADBB699902568F49D1E3AD1509263 /* Pods-TFBubbleItUp_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		90E856671BBBC40900344568 /* TFTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E856661BBBC40800344568 /* TFTextField.swift */; settings = {ASSET_TAGS = (); }; };
 		91CAC5ADADD00C2B40BAA205D7B559F7 /* TFBubbleItUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3294E9E7736F0BE0ADDBD3E60FE8D1C1 /* TFBubbleItUpView.swift */; };
 		945A405F02F6D5BE409A4D8B0FFF4922 /* Pods-TFBubbleItUp_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E90663F0F94056FDF18061D90BD329F /* Pods-TFBubbleItUp_Tests-dummy.m */; };
 		A69ED4B94CC2C1CF628C59C944CE5890 /* TFBubbleItUp-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = FB0B73B587156D6F87FE57CAF5AFAB83 /* TFBubbleItUp-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -71,6 +72,7 @@
 		74929B06C2FE5256651D538FC8DC5505 /* Pods-TFBubbleItUp_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TFBubbleItUp_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		76EE817506411D3FC19526B3DDC3EA2C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		7782BA4E93A0F0F0F20598F39493D2B8 /* Pods-TFBubbleItUp_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TFBubbleItUp_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		90E856661BBBC40800344568 /* TFTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TFTextField.swift; sourceTree = "<group>"; };
 		92731869647D51E6D65482FBBD1B9B90 /* Pods_TFBubbleItUp_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TFBubbleItUp_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		929A58E77A20DAFEA404D240B4C78572 /* TFBubbleItUpViewFlowLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TFBubbleItUpViewFlowLayout.swift; sourceTree = "<group>"; };
 		932F0ED886DEE92E537463BA84731AAA /* Pods-TFBubbleItUp_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TFBubbleItUp_Tests-umbrella.h"; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 				CFA32F685589A368086CB4C34242BAC0 /* TFBubbleItUpValidation.swift */,
 				3294E9E7736F0BE0ADDBD3E60FE8D1C1 /* TFBubbleItUpView.swift */,
 				3784E42E8177B1CDE6D12C4FB38066D0 /* TFBubbleItUpViewCell.swift */,
+				90E856661BBBC40800344568 /* TFTextField.swift */,
 				FAE182C440214B9C4A3FD32B2B6816FB /* TFBubbleItUpViewConfiguration.swift */,
 				929A58E77A20DAFEA404D240B4C78572 /* TFBubbleItUpViewFlowLayout.swift */,
 			);
@@ -426,6 +429,7 @@
 				91CAC5ADADD00C2B40BAA205D7B559F7 /* TFBubbleItUpView.swift in Sources */,
 				828DDA28F05524A421BEB143D7D9702C /* TFBubbleItUpViewCell.swift in Sources */,
 				0C5DF1C7C3BFE98BDBD927775EE1F869 /* TFBubbleItUpViewConfiguration.swift in Sources */,
+				90E856671BBBC40900344568 /* TFTextField.swift in Sources */,
 				5B4C13D394EE54D6C5CA13A5768DCD45 /* TFBubbleItUpViewFlowLayout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
