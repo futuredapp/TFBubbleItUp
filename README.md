@@ -17,7 +17,7 @@ There is also a delegate available (named bubbleItUpDelegate, because TFBubbleIt
 
 You can preset values with **setItem([TFBubbleItem])** where TFBubbleItem is a struct whose initializer takes string (*TFBubbleItem(text: "Hullo!")*).
 
-If you want to access all items from view, there is method for that **stringItems() -> [String]**. That's because sometimes there are empty items, this method will filter it for you a send you only valid strings.
+If you want to access all items from view, there is method for that **validStrings() -> [String]**. That's because sometimes there are empty items, this method will filter it for you a send you only valid strings.
 
 ## Validation
 Among all the configuration, there is an ability to validate items before they can be bubbled. There is typealias named Validation which is just a function definition:
