@@ -431,6 +431,8 @@ enum DataSourceOperationError: ErrorType {
         } catch {
             
         }
+        
+        self.bubbleItUpDelegate?.bubbleItUpViewDidChange?(self, text:"")
     }
     
     // MARK: - Helpers
