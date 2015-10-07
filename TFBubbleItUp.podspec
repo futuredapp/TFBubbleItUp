@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "TFBubbleItUp"
-  s.version          = "1.4.2"
+  s.version          = "1.4.3"
   s.summary          = "Text field with bubbles and ability of validation"
 
 # This description is used to generate tags and improve search results.
