@@ -125,7 +125,7 @@ enum DataSourceOperationError: ErrorType {
         self.placeholderLabel.text = text
     }
     
-    public func replaceItemsTextAtPosition(position: Int, withText text: String) throws {
+    public func replaceItemsTextAtPosition(position: Int, withText text: String, completion: (() -> ())? = nil) throws {
         if position < 0 || position >= self.items.count {
             throw DataSourceOperationError.OutOfBounds
         }
@@ -137,29 +137,27 @@ enum DataSourceOperationError: ErrorType {
             self.reloadItemsAtIndexPaths([updatedIndexPath])
             }) { (finished) -> Void in
                 // Invalidate intrinsic size when done
-                self.invalidateIntrinsicContentSize(nil)
-                // Notify delegate that view did change
-                self.bubbleItUpDelegate?.bubbleItUpViewDidChange?(self, text:text)
+                self.invalidateIntrinsicContentSize(completion)
         }
     }
     
-    public func replaceLastInvalidOrInsertItemText(text: String) -> Bool {
+    public func replaceLastInvalidOrInsertItemText(text: String, completion: (() -> ())?) {
         
         if let validator = TFBubbleItUpViewConfiguration.itemValidation, let item = self.items.last where !validator(item.text) {
             
             let position = self.items.indexOf({ (i) -> Bool in i.text == item.text })
             
             // Force try because we know that this position exists
-            try! self.replaceItemsTextAtPosition(position!, withText: text)
-            return true
+            try! self.replaceItemsTextAtPosition(position!, withText: text, completion: completion)
+            
             
         } else {
-            return addStringItem(text)
+            addStringItem(text, completion: completion)
         }
     }
     
     /// Adds item if possible, returning Bool indicates success or failure
-    public func addStringItem(text: String) -> Bool {
+    public func addStringItem(text: String, completion: (()->())? = nil) -> Bool {
         
         if self.items.count == self.needPreciseNumberOfItems() && self.items.last?.text != "" {
             
@@ -172,9 +170,9 @@ enum DataSourceOperationError: ErrorType {
             if let cell = self.cellForItemAtIndexPath(NSIndexPath(forItem: self.items.count - 1, inSection: 0)) as? TFBubbleItUpViewCell {
                 cell.configureWithItem(self.items[self.items.count - 1])
                 cell.resignFirstResponder()
-                self.needUpdateLayout(cell)
+                self.needUpdateLayout(cell, completion: completion)
             }
-            self.bubbleItUpDelegate?.bubbleItUpViewDidChange?(self, text:text)
+//            self.bubbleItUpDelegate?.bubbleItUpViewDidChange?(self, text:text)
             
         } else {
             self.items.append(TFBubbleItem(text: text))
@@ -184,10 +182,11 @@ enum DataSourceOperationError: ErrorType {
                 self.insertItemsAtIndexPaths([newLastIndexPath])
                 }) { (finished) -> Void in
                     // Invalidate intrinsic size when done
-                    self.invalidateIntrinsicContentSize(nil)
+                    self.invalidateIntrinsicContentSize(completion)
                     // The new cell should now become the first reponder
                     //self.cellForItemAtIndexPath(newIndexPath)?.becomeFirstResponder()
-                    self.bubbleItUpDelegate?.bubbleItUpViewDidChange?(self, text:text)
+//                    self.bubbleItUpDelegate?.bubbleItUpViewDidChange?(self, text:text)
+                    
             }
         }
         
@@ -358,7 +357,7 @@ enum DataSourceOperationError: ErrorType {
         self.bubbleItUpDelegate?.bubbleItUpViewDidChange?(self, text:text)
     }
 
-    internal func needUpdateLayout(cell: TFBubbleItUpViewCell) {
+    internal func needUpdateLayout(cell: TFBubbleItUpViewCell, completion: (() -> ())? = nil) {
         self.collectionViewLayout.invalidateLayout()
 
         // Update cell frame by its intrinsic size
@@ -366,7 +365,7 @@ enum DataSourceOperationError: ErrorType {
         frame.size.width = cell.intrinsicContentSize().width
         cell.frame = frame
         
-        self.invalidateIntrinsicContentSize(nil)
+        self.invalidateIntrinsicContentSize(completion)
     }
     
     internal func createAndSwitchToNewCell(cell: TFBubbleItUpViewCell) {
