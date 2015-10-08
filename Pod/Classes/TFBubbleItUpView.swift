@@ -141,7 +141,7 @@ enum DataSourceOperationError: ErrorType {
         }
     }
     
-    public func replaceLastInvalidOrInsertItemText(text: String, completion: (() -> ())?) {
+    public func replaceLastInvalidOrInsertItemText(text: String, completion: (() -> ())? = nil) {
         
         if let validator = TFBubbleItUpViewConfiguration.itemValidation, let item = self.items.last where !validator(item.text) {
             
@@ -173,7 +173,6 @@ enum DataSourceOperationError: ErrorType {
                 self.needUpdateLayout(cell)
                 completion?()
             }
-//            self.bubbleItUpDelegate?.bubbleItUpViewDidChange?(self, text:text)
             
         } else {
             self.items.append(TFBubbleItem(text: text))
@@ -184,10 +183,6 @@ enum DataSourceOperationError: ErrorType {
                 }) { (finished) -> Void in
                     // Invalidate intrinsic size when done
                     self.invalidateIntrinsicContentSize(completion)
-                    // The new cell should now become the first reponder
-                    //self.cellForItemAtIndexPath(newIndexPath)?.becomeFirstResponder()
-//                    self.bubbleItUpDelegate?.bubbleItUpViewDidChange?(self, text:text)
-                    
             }
         }
         
@@ -211,7 +206,6 @@ enum DataSourceOperationError: ErrorType {
             }) { (finished) -> Void in
                 // Invalidate intrinsic size when done
                 self.invalidateIntrinsicContentSize(nil)
-                self.bubbleItUpDelegate?.bubbleItUpViewDidChange?(self, text:text)
         }
         
         return true
