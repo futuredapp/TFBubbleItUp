@@ -143,6 +143,21 @@ enum DataSourceOperationError: ErrorType {
         }
     }
     
+    public func replaceLastInvalidOrInsertItemText(text: String) -> Bool {
+        
+        if let validator = TFBubbleItUpViewConfiguration.itemValidation, let item = self.items.last where !validator(item.text) {
+            
+            let position = self.items.indexOf({ (i) -> Bool in i.text == item.text })
+            
+            // Force try because we know that this position exists
+            try! self.replaceItemsTextAtPosition(position!, withText: text)
+            return true
+            
+        } else {
+            return addStringItem(text)
+        }
+    }
+    
     /// Adds item if possible, returning Bool indicates success or failure
     public func addStringItem(text: String) -> Bool {
         
