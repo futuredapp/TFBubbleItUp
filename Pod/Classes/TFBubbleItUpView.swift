@@ -141,18 +141,30 @@ enum DataSourceOperationError: ErrorType {
         }
     }
     
-    public func replaceLastInvalidOrInsertItemText(text: String, completion: (() -> ())? = nil) {
+    public func replaceLastInvalidOrInsertItemText(text: String, switchToNext: Bool = true, completion: (() -> ())? = nil) {
         
         if let validator = TFBubbleItUpViewConfiguration.itemValidation, let item = self.items.last where !validator(item.text) {
             
             let position = self.items.indexOf({ (i) -> Bool in i.text == item.text })
             
             // Force try because we know that this position exists
-            try! self.replaceItemsTextAtPosition(position!, withText: text, completion: completion)
+            try! self.replaceItemsTextAtPosition(position!, withText: text) {
+                
+                if switchToNext {
+                    self.selectLastPossible()
+                }
+                completion?()
+            }
             
             
         } else {
-            addStringItem(text, completion: completion)
+            addStringItem(text) {
+                
+                if switchToNext {
+                    self.selectLastPossible()
+                }
+                completion?()
+            }
         }
     }
     
@@ -170,8 +182,7 @@ enum DataSourceOperationError: ErrorType {
             if let cell = self.cellForItemAtIndexPath(NSIndexPath(forItem: self.items.count - 1, inSection: 0)) as? TFBubbleItUpViewCell {
                 cell.configureWithItem(self.items[self.items.count - 1])
                 cell.resignFirstResponder()
-                self.needUpdateLayout(cell)
-                completion?()
+                self.needUpdateLayout(cell, completion: completion)
             }
             
         } else {
@@ -213,7 +224,7 @@ enum DataSourceOperationError: ErrorType {
     
     public override func becomeFirstResponder() -> Bool {
         
-        self.didTapOnView(self)
+        self.selectLastPossible()
         
         return true
     }
@@ -266,7 +277,10 @@ enum DataSourceOperationError: ErrorType {
     }
     
     func didTapOnView(sender: AnyObject) {
-        
+        self.selectLastPossible()
+    }
+    
+    internal func selectLastPossible() {
         if let last = self.items.last where last.text == "" || !isTextValid(last.text) || self.items.count == self.needPreciseNumberOfItems() {
             self.cellForItemAtIndexPath(NSIndexPath(forItem: self.items.count - 1, inSection: 0))?.becomeFirstResponder()
         } else {
@@ -353,14 +367,18 @@ enum DataSourceOperationError: ErrorType {
     }
 
     internal func needUpdateLayout(cell: TFBubbleItUpViewCell) {
+        self.needUpdateLayout(cell, completion:nil)
+    }
+    
+    func needUpdateLayout(cell: TFBubbleItUpViewCell, completion: (() -> ())?) {
         self.collectionViewLayout.invalidateLayout()
-
+        
         // Update cell frame by its intrinsic size
         var frame = cell.frame
         frame.size.width = cell.intrinsicContentSize().width
         cell.frame = frame
         
-        self.invalidateIntrinsicContentSize(nil)
+        self.invalidateIntrinsicContentSize(completion)
     }
     
     internal func createAndSwitchToNewCell(cell: TFBubbleItUpViewCell) {
