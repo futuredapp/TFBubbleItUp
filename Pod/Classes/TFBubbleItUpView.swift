@@ -170,7 +170,8 @@ enum DataSourceOperationError: ErrorType {
             if let cell = self.cellForItemAtIndexPath(NSIndexPath(forItem: self.items.count - 1, inSection: 0)) as? TFBubbleItUpViewCell {
                 cell.configureWithItem(self.items[self.items.count - 1])
                 cell.resignFirstResponder()
-                self.needUpdateLayout(cell, completion: completion)
+                self.needUpdateLayout(cell)
+                completion?()
             }
 //            self.bubbleItUpDelegate?.bubbleItUpViewDidChange?(self, text:text)
             
@@ -357,7 +358,7 @@ enum DataSourceOperationError: ErrorType {
         self.bubbleItUpDelegate?.bubbleItUpViewDidChange?(self, text:text)
     }
 
-    internal func needUpdateLayout(cell: TFBubbleItUpViewCell, completion: (() -> ())? = nil) {
+    internal func needUpdateLayout(cell: TFBubbleItUpViewCell) {
         self.collectionViewLayout.invalidateLayout()
 
         // Update cell frame by its intrinsic size
@@ -365,7 +366,7 @@ enum DataSourceOperationError: ErrorType {
         frame.size.width = cell.intrinsicContentSize().width
         cell.frame = frame
         
-        self.invalidateIntrinsicContentSize(completion)
+        self.invalidateIntrinsicContentSize(nil)
     }
     
     internal func createAndSwitchToNewCell(cell: TFBubbleItUpViewCell) {
