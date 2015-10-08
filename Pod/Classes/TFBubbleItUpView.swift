@@ -125,6 +125,24 @@ enum DataSourceOperationError: ErrorType {
         self.placeholderLabel.text = text
     }
     
+    public func replaceItemsTextAtPosition(position: Int, withText text: String) throws {
+        if position < 0 || position >= self.items.count {
+            throw DataSourceOperationError.OutOfBounds
+        }
+        
+        self.items[position].text = text
+        
+        self.performBatchUpdates({ () -> Void in
+            let updatedIndexPath = NSIndexPath(forItem: position, inSection: 0)
+            self.reloadItemsAtIndexPaths([updatedIndexPath])
+            }) { (finished) -> Void in
+                // Invalidate intrinsic size when done
+                self.invalidateIntrinsicContentSize(nil)
+                // Notify delegate that view did change
+                self.bubbleItUpDelegate?.bubbleItUpViewDidChange?(self, text:text)
+        }
+    }
+    
     /// Adds item if possible, returning Bool indicates success or failure
     public func addStringItem(text: String) -> Bool {
         
