@@ -250,8 +250,6 @@ enum DataSourceOperationError: ErrorType {
         if self.intrinsicContentSize() != self.bounds.size {
             UIView.animateWithDuration(0.2, animations: { () -> Void in
                 self.invalidateIntrinsicContentSize()
-                //            self.superview?.setNeedsLayout()
-                self.superview?.layoutIfNeeded()
                 
                 }) { (finished) -> Void in
                     completionBlock?()
