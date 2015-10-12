@@ -468,14 +468,14 @@ enum DataSourceOperationError: ErrorType {
         // Remove item
         
         do {
-            try self.removeItemAtIndex(previousItemIndex, completion: nil)
+            try self.removeItemAtIndex(previousItemIndex) {
+                self.bubbleItUpDelegate?.bubbleItUpViewDidChange?(self, text:"")
+            }
         } catch DataSourceOperationError.OutOfBounds {
             print("Error occured while removing item")
         } catch {
             
         }
-        
-        self.bubbleItUpDelegate?.bubbleItUpViewDidChange?(self, text:"")
     }
     
     // MARK: - Helpers
