@@ -1,12 +1,10 @@
 source 'https://github.com/CocoaPods/Specs.git'
 use_frameworks!
 
-target 'TFBubbleItUp_Example', :exclusive => true do
+target 'TFBubbleItUp_Example' do
   pod "TFBubbleItUp", :path => "../"
 end
 
-target 'TFBubbleItUp_Tests', :exclusive => true do
+target 'TFBubbleItUp_Tests' do
   pod "TFBubbleItUp", :path => "../"
-
-  
 end
