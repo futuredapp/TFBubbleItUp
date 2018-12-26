@@ -51,7 +51,10 @@ enum DataSourceOperationError: Error {
     
     func customInit() {
         // Load sizing cell for width calculation
-        self.sizingCell = TFBubbleItUpViewCell(frame: CGRectMake(0, 0, 100, CGFloat(TFBubbleItUpViewConfiguration.cellHeight)))
+        self.sizingCell = TFBubbleItUpViewCell(frame: CGRect(x: 0,
+                                                             y: 0,
+                                                             width: 100,
+                                                             height: CGFloat(TFBubbleItUpViewConfiguration.cellHeight)))
         
         self.backgroundColor = .white
         var frame = self.bounds
@@ -85,14 +88,14 @@ enum DataSourceOperationError: Error {
     // MARK:- Public API
     
     /// Sets new items and reloads sizes
-    func setItems(items: [TFBubbleItem]) {
+    func setItems(_ items: [TFBubbleItem]) {
         
         self.items = items
         
         CATransaction.begin()
         CATransaction.setCompletionBlock { () -> Void in
             self.collectionViewLayout.invalidateLayout() // Invalidate layout
-            self.invalidateIntrinsicContentSize(nil) // Invalidate intrinsic size
+            self.invalidateIntrinsicContentSize(completionBlock: nil) // Invalidate intrinsic size
         }
         
         self.reloadData() // Reload collectionView
@@ -118,7 +121,7 @@ enum DataSourceOperationError: Error {
     /// Returns all valid strings
     public func validStrings() -> [String] {
         
-        return self.items.filter({ (item) -> Bool in item.text != "" && TFBubbleItUpValidation.isValid(item.text) }).map({ (item) -> String in item.text })
+        return self.items.filter({ (item) -> Bool in item.text != "" && TFBubbleItUpValidation.isValid(text: item.text) }).map({ (item) -> String in item.text })
     }
     
     public func setPlaceholderText(text: String) {
@@ -170,7 +173,7 @@ enum DataSourceOperationError: Error {
             
             
         } else {
-            addStringItem(text) {
+            addStringItem(text: text) {
                 
                 if switchToNext {
                     self.selectLastPossible()
@@ -205,7 +208,7 @@ enum DataSourceOperationError: Error {
                 self.insertItemsAtIndexPaths([newLastIndexPath])
                 }) { (finished) -> Void in
                     // Invalidate intrinsic size when done
-                    self.invalidateIntrinsicContentSize(completion)
+                    self.invalidateIntrinsicContentSize(completionBlock: completion)
             }
         }
         
@@ -213,7 +216,7 @@ enum DataSourceOperationError: Error {
     }
     
     public func removeStringItem(text: String) -> Bool {
-        let index = self.items.indexOf { (item) -> Bool in item.text == text }
+        let index = self.items.index { (item) -> Bool in item.text == text }
         
         guard let i = index else {
             
@@ -228,7 +231,7 @@ enum DataSourceOperationError: Error {
             
             }) { (finished) -> Void in
                 // Invalidate intrinsic size when done
-                self.invalidateIntrinsicContentSize(nil)
+                self.invalidateIntrinsicContentSize(completionBlock: nil)
         }
         
         return true
@@ -243,11 +246,11 @@ enum DataSourceOperationError: Error {
     
     // MARK:- Autolayout
     
-    override public func intrinsicContentSize() -> CGSize {
+    override public var intrinsicContentSize: CGSize {
         // Calculate custom intrinsic size by collectionViewLayouts contentent size
         let size = (self.collectionViewLayout as! UICollectionViewFlowLayout).collectionViewContentSize
         
-        return CGSizeMake(CGRectGetWidth(self.bounds), max(self.minimumHeight(), size.height))
+        return CGSize(width: self.bounds.width, height: max(self.minimumHeight(), size.height))
     }
     
     func minimumHeight() -> CGFloat {
@@ -259,8 +262,8 @@ enum DataSourceOperationError: Error {
     
     private func invalidateIntrinsicContentSize(completionBlock: (() -> ())?) {
         
-        if self.intrinsicContentSize() != self.bounds.size {
-            UIView.animateWithDuration(0.2, animations: { () -> Void in
+        if self.intrinsicContentSize != self.bounds.size {
+            UIView.animate(withDuration: 0.2, animations: { () -> Void in
                 self.invalidateIntrinsicContentSize()
                 
                 }) { (finished) -> Void in
@@ -280,7 +283,7 @@ enum DataSourceOperationError: Error {
             return false
         }
         
-        if let view = touch.view, view.isKindOfClass(TFBubbleItUpViewCell) {
+        if let view = touch.view, view.isKind(of: TFBubbleItUpViewCell.self) {
             return false
         } else {
             return true
@@ -292,7 +295,7 @@ enum DataSourceOperationError: Error {
     }
     
     internal func selectLastPossible() {
-        if let last = self.items.last where last.text == "" || !isTextValid(last.text) || self.items.count == self.needPreciseNumberOfItems() {
+        if let last = self.items.last where last.text == "" || !isTextValid(text: last.text) || self.items.count == self.needPreciseNumberOfItems() {
             self.cellForItemAtIndexPath(NSIndexPath(forItem: self.items.count - 1, inSection: 0))?.becomeFirstResponder()
         } else {
             
@@ -328,7 +331,7 @@ enum DataSourceOperationError: Error {
         cell.delegate = self;
         
         let item = self.items[indexPath.item]
-        cell.configureWithItem(item)
+        cell.configure(with: item)
         
         return cell
     }
@@ -342,7 +345,7 @@ enum DataSourceOperationError: Error {
         }
     }
     
-    public func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return self.items.count
     }
@@ -359,12 +362,12 @@ enum DataSourceOperationError: Error {
         let item = self.items[indexPath.item]
         
         self.sizingCell.textField.text = item.text
-        let size = self.sizingCell.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize)
+        let size = self.sizingCell.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
         
         let layoutInset = (self.collectionViewLayout as! UICollectionViewFlowLayout).sectionInset
         let maximumWidth = self.bounds.width - layoutInset.left - layoutInset.right
         
-        return CGSizeMake(min(size.width, maximumWidth), CGFloat(TFBubbleItUpViewConfiguration.cellHeight))
+        return CGSize(width: min(size.width, maximumWidth), height: CGFloat(TFBubbleItUpViewConfiguration.cellHeight))
     }
     
     // MARK:- TFContactCollectionCellDelegate
@@ -374,11 +377,11 @@ enum DataSourceOperationError: Error {
             self.items[indexPath.item].text = text
         }
         
-        self.bubbleItUpDelegate?.bubbleItUpViewDidChange?(self, text:text)
+        self.bubbleItUpDelegate?.bubbleItUpViewDidChange?(view: self, text:text)
     }
     
     internal func needUpdateLayout(cell: TFBubbleItUpViewCell) {
-        self.needUpdateLayout(cell, completion:nil)
+        self.needUpdateLayout(cell: cell, completion:nil)
     }
     
     func needUpdateLayout(cell: TFBubbleItUpViewCell, completion: (() -> ())?) {
@@ -386,16 +389,16 @@ enum DataSourceOperationError: Error {
         
         // Update cell frame by its intrinsic size
         var frame = cell.frame
-        frame.size.width = cell.intrinsicContentSize().width
+        frame.size.width = cell.intrinsicContentSize.width
         cell.frame = frame
         
-        self.invalidateIntrinsicContentSize(completion)
+        self.invalidateIntrinsicContentSize(completionBlock: completion)
     }
     
     internal func createAndSwitchToNewCell(cell: TFBubbleItUpViewCell) {
         
         // If no indexpath found return
-        guard let indexPath = self.indexPathForCell(cell) else {
+        guard let indexPath = self.indexPath(for: cell) else {
             return
         }
         
@@ -406,7 +409,7 @@ enum DataSourceOperationError: Error {
         
         cell.setMode(.View)
         
-        if let preciseNumber = self.needPreciseNumberOfItems() where self.items.count == preciseNumber { // If we reach quantity, return
+        if let preciseNumber = self.needPreciseNumberOfItems(), self.items.count == preciseNumber { // If we reach quantity, return
             cell.resignFirstResponder()
             return
         }
@@ -415,7 +418,7 @@ enum DataSourceOperationError: Error {
         let newIndexPath = NSIndexPath(forItem: self.items.count - 1, inSection: indexPath.section)
         
         // If the next cell is empty, move to it. Otherwise create new.
-        if let nextCell = self.cellForItemAtIndexPath(newIndexPath) as? TFBubbleItUpViewCell where nextCell.textField.text == "" {
+        if let nextCell = self.cellForItemAtIndexPath(newIndexPath) as? TFBubbleItUpViewCell, nextCell.textField.text == "" {
             
             nextCell.becomeFirstResponder()
             
@@ -428,7 +431,7 @@ enum DataSourceOperationError: Error {
                 self.insertItemsAtIndexPaths([newLastIndexPath])
                 }) { (finished) -> Void in
                     // Invalidate intrinsic size when done
-                    self.invalidateIntrinsicContentSize(nil)
+                    self.invalidateIntrinsicContentSize(completionBlock: nil)
                     // The new cell should now become the first reponder
                     //self.cellForItemAtIndexPath(newIndexPath)?.becomeFirstResponder()
             }
@@ -451,14 +454,14 @@ enum DataSourceOperationError: Error {
                 self.deleteItemsAtIndexPaths([indexPath])
                 }) { (finished) -> Void in
                     // Invalidate intrinsic size when done
-                    self.invalidateIntrinsicContentSize(nil)
+                    self.invalidateIntrinsicContentSize(completionBlock: nil)
                     
                     if self.items.count == 0 {
                         self.placeholderLabel.isHidden = false
                     }
             }
         } else {
-            self.bubbleItUpDelegate?.bubbleItUpViewDidFinishEditingBubble(self, text: text)
+            self.bubbleItUpDelegate?.bubbleItUpViewDidFinishEditingBubble(view: self, text: text)
         }
     }
     
@@ -481,7 +484,7 @@ enum DataSourceOperationError: Error {
         // Remove item
         
         do {
-            try self.removeItemAtIndex(previousItemIndex) {
+            try self.removeItem(at: previousItemIndex) {
                 self.bubbleItUpDelegate?.bubbleItUpViewDidChange?(self, text:"")
             }
         } catch DataSourceOperationError.OutOfBounds {
@@ -493,13 +496,13 @@ enum DataSourceOperationError: Error {
     
     // MARK: - Helpers
     
-    func removeItemAtIndex(index: Int, completion: (() -> ())?) throws {
+    func removeItem(at index: Int, completion: (() -> ())?) throws {
         
         if self.items.count <= index || index < 0 {
             throw DataSourceOperationError.OutOfBounds
         }
         
-        self.items.removeAtIndex(index)
+        self.items.remove(at: index)
         
         // Update collectionView
         self.performBatchUpdates({ () -> Void in
