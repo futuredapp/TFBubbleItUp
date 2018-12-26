@@ -59,7 +59,7 @@ class TFBubbleItUpViewCell: UICollectionViewCell, UITextFieldDelegate {
         
         
         // Setup constraints
-        let views = ["field": self.textField]
+        let views: [String : UITextField] = ["field": self.textField]
         
         let horizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[field]-0-|", options: NSLayoutFormatOptions(), metrics: nil, views: views)
         let verticalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-(-4)-[field]-(-4)-|", options: NSLayoutFormatOptions(), metrics: nil, views: views)

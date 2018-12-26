@@ -10,7 +10,10 @@ import Foundation
 
 public typealias Validation = (String) -> Bool
 
-infix operator |>> {associativity left }
+precedencegroup DefaultPrecedence {
+    associativity: left
+}
+infix operator |>> : DefaultPrecedence
 
 public func |>> (v1: @escaping Validation, v2: @escaping Validation) -> Validation {
     return { text in return v1(text) && v2(text) }

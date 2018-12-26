@@ -16,7 +16,7 @@ class TFTextField: UITextField {
         super.deleteBackward()
         
         if shouldDismiss {
-            self.delegate?.textField?(self, shouldChangeCharactersIn: NSMakeRange(0, 0), replacementString: "")
+            _ = self.delegate?.textField?(self, shouldChangeCharactersIn: NSMakeRange(0, 0), replacementString: "")
         }
     }
 }
