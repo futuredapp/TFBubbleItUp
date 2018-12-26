@@ -119,7 +119,7 @@ class TFBubbleItUpViewCell: UICollectionViewCell, UITextFieldDelegate {
     }
     
     override var intrinsicContentSize: CGSize {
-        var textFieldSize = self.textField.sizeThatFits(CGSize(width: CGFloat(FLT_MAX),
+        var textFieldSize = self.textField.sizeThatFits(CGSize(width: CGFloat.greatestFiniteMagnitude,
                                                                height: self.textField.bounds.height))
         textFieldSize.width += 30
         
@@ -146,7 +146,7 @@ class TFBubbleItUpViewCell: UICollectionViewCell, UITextFieldDelegate {
     
     // MARK:- UITextField delegate
     
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         if string == " " && TFBubbleItUpViewConfiguration.skipOnWhitespace && TFBubbleItUpValidation.isValid(text: self.textField.text) {
             self.delegate?.createAndSwitchToNewCell(cell: self)
@@ -163,7 +163,7 @@ class TFBubbleItUpViewCell: UICollectionViewCell, UITextFieldDelegate {
         return false
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         if (TFBubbleItUpViewConfiguration.skipOnReturnKey) {
             

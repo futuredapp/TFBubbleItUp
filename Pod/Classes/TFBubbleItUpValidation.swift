@@ -12,7 +12,7 @@ public typealias Validation = (String) -> Bool
 
 infix operator |>> {associativity left }
 
-public func |>> (v1: Validation, v2: Validation) -> Validation {
+public func |>> (v1: @escaping Validation, v2: @escaping Validation) -> Validation {
     return { text in return v1(text) && v2(text) }
 }
 
@@ -34,7 +34,7 @@ public class TFBubbleItUpValidation {
         }
     }
     
-    public class func combine(v1: Validation, v2: Validation) -> Validation {
+    public class func combine(v1: @escaping Validation, v2: @escaping Validation) -> Validation {
         return { text in return v1(text) && v2(text) }
     }
     
