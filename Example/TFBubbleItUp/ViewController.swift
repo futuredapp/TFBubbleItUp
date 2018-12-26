@@ -22,7 +22,7 @@ class ViewController: UIViewController, TFBubbleItUpViewDelegate {
         
         // Set bubbleItUpDelegate delegate
         self.bubbleItUpView.bubbleItUpDelegate = self
-        self.bubbleItUpView.setPlaceholderText("Type something...")
+        self.bubbleItUpView.setPlaceholderText(text: "Type something...")
         
         let validation = TFBubbleItUpValidation.testEmptiness() |>> TFBubbleItUpValidation.testEmailAddress()
         TFBubbleItUpViewConfiguration.itemValidation = validation
@@ -37,16 +37,16 @@ class ViewController: UIViewController, TFBubbleItUpViewDelegate {
     }
 
     @IBAction func addAnother(sender: AnyObject) {
-        self.bubbleItUpView.addStringItem("ales@thefuntasty.com")
+        _ = self.bubbleItUpView.addStringItem(text: "ales@thefuntasty.com")
     }
 
     @IBAction func removeLast(sender: AnyObject) {
-        self.bubbleItUpView.removeStringItem("ales@thefuntasty.com")
+        _ = self.bubbleItUpView.removeStringItem(text: "ales@thefuntasty.com")
     }
     // MARK:- TFBubbleItUpDelegate
     
     func bubbleItUpViewDidFinishEditingBubble(view: TFBubbleItUpView, text: String) {
-        self.textLabel.text = view.validStrings().joinWithSeparator(", ")
+        self.textLabel.text = view.validStrings().joined(separator: ", ")
     }
     
 }

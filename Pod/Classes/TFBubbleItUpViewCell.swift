@@ -69,9 +69,9 @@ class TFBubbleItUpViewCell: UICollectionViewCell, UITextFieldDelegate {
         
         self.textField.delegate = self
         
-        self.textField.addTarget(self, action: Selector("editingChanged:"), for: .editingChanged)
-        self.textField.addTarget(self, action: Selector("editingDidBegin:"), for: .editingDidBegin)
-        self.textField.addTarget(self, action: Selector("editingDidEnd:"), for: .editingDidEnd)
+        self.textField.addTarget(self, action: #selector(TFBubbleItUpViewCell.editingChanged), for: .editingChanged)
+        self.textField.addTarget(self, action: #selector(TFBubbleItUpViewCell.editingDidBegin), for: .editingDidBegin)
+        self.textField.addTarget(self, action: #selector(TFBubbleItUpViewCell.editingDidEnd), for: .editingDidEnd)
         
         // Setup appearance
         self.textField.borderStyle = .none

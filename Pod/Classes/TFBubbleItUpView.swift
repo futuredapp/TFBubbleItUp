@@ -77,7 +77,7 @@ enum DataSourceOperationError: Error {
             layout.minimumLineSpacing = TFBubbleItUpViewConfiguration.lineSpacing
         }
         
-        self.tapRecognizer = UITapGestureRecognizer(target: self, action: Selector("didTapOnView:"))
+        self.tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(TFBubbleItUpView.didTapOnView))
         self.addGestureRecognizer(self.tapRecognizer)
     }
     
@@ -142,7 +142,7 @@ enum DataSourceOperationError: Error {
                 self.invalidateIntrinsicContentSize() {
                     
                     if resign {
-                        cell.resignFirstResponder()
+                        _ = cell.resignFirstResponder()
                     }
                     
                     completion?()
@@ -173,7 +173,7 @@ enum DataSourceOperationError: Error {
             
             
         } else {
-            addStringItem(text: text) {
+            _ = addStringItem(text: text) {
                 
                 if switchToNext {
                     self.selectLastPossible()
@@ -196,7 +196,7 @@ enum DataSourceOperationError: Error {
             
             if let cell = self.cellForItem(at: IndexPath(item: self.items.count - 1, section: 0)) as? TFBubbleItUpViewCell {
                 cell.configure(with: self.items[self.items.count - 1])
-                cell.resignFirstResponder()
+                _ = cell.resignFirstResponder()
                 self.needUpdateLayout(cell: cell, completion: completion)
             }
             
@@ -410,7 +410,7 @@ enum DataSourceOperationError: Error {
         cell.setMode(.View)
         
         if let preciseNumber = self.needPreciseNumberOfItems(), self.items.count == preciseNumber { // If we reach quantity, return
-            cell.resignFirstResponder()
+            _ = cell.resignFirstResponder()
             return
         }
         
@@ -420,7 +420,7 @@ enum DataSourceOperationError: Error {
         // If the next cell is empty, move to it. Otherwise create new.
         if let nextCell = self.cellForItem(at: newIndexPath) as? TFBubbleItUpViewCell, nextCell.textField.text == "" {
             
-            nextCell.becomeFirstResponder()
+            _ = nextCell.becomeFirstResponder()
             
         } else {
             self.items.append(TFBubbleItem(text: "", becomeFirstResponder: true)) // insert new data item
