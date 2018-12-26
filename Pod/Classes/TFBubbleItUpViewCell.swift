@@ -61,22 +61,22 @@ class TFBubbleItUpViewCell: UICollectionViewCell, UITextFieldDelegate {
         // Setup constraints
         let views = ["field": self.textField]
         
-        let horizontalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[field]-0-|", options: NSLayoutFormatOptions(), metrics: nil, views: views)
-        let verticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|-(-4)-[field]-(-4)-|", options: NSLayoutFormatOptions(), metrics: nil, views: views)
+        let horizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[field]-0-|", options: NSLayoutFormatOptions(), metrics: nil, views: views)
+        let verticalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-(-4)-[field]-(-4)-|", options: NSLayoutFormatOptions(), metrics: nil, views: views)
         
         self.addConstraints(horizontalConstraints)
         self.addConstraints(verticalConstraints)
         
         self.textField.delegate = self
         
-        self.textField.addTarget(self, action: Selector("editingChanged:"), forControlEvents: UIControlEvents.EditingChanged)
-        self.textField.addTarget(self, action: Selector("editingDidBegin:"), forControlEvents: UIControlEvents.EditingDidBegin)
-        self.textField.addTarget(self, action: Selector("editingDidEnd:"), forControlEvents: UIControlEvents.EditingDidEnd)
+        self.textField.addTarget(self, action: Selector("editingChanged:"), forControlEvents: .editingChanged)
+        self.textField.addTarget(self, action: Selector("editingDidBegin:"), forControlEvents: .editingDidBegin)
+        self.textField.addTarget(self, action: Selector("editingDidEnd:"), forControlEvents: .editingDidEnd)
         
         // Setup appearance
-        self.textField.borderStyle = UITextBorderStyle.None
-        self.textField.textAlignment = .Center
-        self.textField.contentMode = UIViewContentMode.Left
+        self.textField.borderStyle = .none
+        self.textField.textAlignment = .center
+        self.textField.contentMode = .left
         self.textField.keyboardType = TFBubbleItUpViewConfiguration.keyboardType
         self.textField.returnKeyType = TFBubbleItUpViewConfiguration.returnKey
         self.textField.autocapitalizationType = TFBubbleItUpViewConfiguration.autoCapitalization

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public typealias Validation = String -> Bool
+public typealias Validation = (String) -> Bool
 
 infix operator |>> {associativity left }
 
@@ -30,7 +30,7 @@ public class TFBubbleItUpValidation {
         return { text in
             let emailRegex = "^[+\\w\\.\\-']+@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*(\\.[a-zA-Z]{2,})+$"
             let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegex)
-            return emailTest.evaluateWithObject(text)
+            return emailTest.evaluate(with: text)
         }
     }
     

@@ -20,22 +20,22 @@ public class TFBubbleItUpViewConfiguration {
     public static var viewBackgroundColor: UIColor = UIColor(red: 0.918, green: 0.933, blue: 0.949, alpha: 1.00)
     
     /// Background color for cell in edit state
-    public static var editBackgroundColor: UIColor = UIColor.whiteColor()
+    public static var editBackgroundColor: UIColor = .white
     
     /// Background color for cell in invalid state
-    public static var invalidBackgroundColor: UIColor = UIColor.whiteColor()
+    public static var invalidBackgroundColor: UIColor = .white
     
     /// Font for cell in normal state
-    public static var viewFont: UIFont = UIFont.systemFontOfSize(12.0)
+    public static var viewFont: UIFont = .systemFont(ofSize: 12.0)
     
     /// Font for cell in normal state
-    public static var placeholderFont: UIFont = UIFont.systemFontOfSize(12.0)
+    public static var placeholderFont: UIFont = .systemFont(ofSize: 12.0)
     
     /// Font for cell in edit state
-    public static var editFont: UIFont = UIFont.systemFontOfSize(12.0)
+    public static var editFont: UIFont = .systemFont(ofSize: 12.0)
     
     /// Font for cell in invalid state
-    public static var invalidFont: UIFont = UIFont.systemFontOfSize(12.0)
+    public static var invalidFont: UIFont = .systemFont(ofSize: 12.0)
     
     /// Font color for cell in view state
     public static var viewFontColor: UIColor = UIColor(red: 0.353, green: 0.388, blue: 0.431, alpha: 1.00)
@@ -71,16 +71,16 @@ public class TFBubbleItUpViewConfiguration {
     public static var lineSpacing: CGFloat = 5.0
     
     /// Keyboard type
-    public static var keyboardType: UIKeyboardType = UIKeyboardType.EmailAddress
+    public static var keyboardType: UIKeyboardType = .emailAddress
     
     /// Keyboard return key
-    public static var returnKey: UIReturnKeyType = UIReturnKeyType.Done
+    public static var returnKey: UIReturnKeyType = .done
     
     /// Field auto-capitalization type
-    public static var autoCapitalization: UITextAutocapitalizationType = UITextAutocapitalizationType.None
+    public static var autoCapitalization: UITextAutocapitalizationType = .none
     
     /// Field auto-correction type
-    public static var autoCorrection: UITextAutocorrectionType = UITextAutocorrectionType.No
+    public static var autoCorrection: UITextAutocorrectionType = .no
     
     /// If true it creates new item when user types whitespace
     public static var skipOnWhitespace: Bool = true
