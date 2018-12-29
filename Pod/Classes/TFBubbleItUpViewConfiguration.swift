@@ -62,7 +62,7 @@ public class TFBubbleItUpViewConfiguration {
     public static var cellHeight: Float = 25.0
     
     /// View insets
-    public static var inset: UIEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5)
+    public static var inset: UIEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
     
     /// Interitem spacing
     public static var interitemSpacing: CGFloat = 5.0

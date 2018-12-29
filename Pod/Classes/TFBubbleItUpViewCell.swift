@@ -61,8 +61,8 @@ class TFBubbleItUpViewCell: UICollectionViewCell, UITextFieldDelegate {
         // Setup constraints
         let views: [String : UITextField] = ["field": self.textField]
         
-        let horizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[field]-0-|", options: NSLayoutFormatOptions(), metrics: nil, views: views)
-        let verticalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-(-4)-[field]-(-4)-|", options: NSLayoutFormatOptions(), metrics: nil, views: views)
+        let horizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[field]-0-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: views)
+        let verticalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-(-4)-[field]-(-4)-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: views)
         
         self.addConstraints(horizontalConstraints)
         self.addConstraints(verticalConstraints)
@@ -182,16 +182,16 @@ class TFBubbleItUpViewCell: UICollectionViewCell, UITextFieldDelegate {
     
     // MARK:- UITextField handlers
     
-    func editingChanged(textField: UITextField) {
+    @objc func editingChanged(textField: UITextField) {
         self.delegate?.didChangeText(cell: self, text: textField.text ?? "")
         self.delegate?.needUpdateLayout(cell: self)
     }
     
-    func editingDidBegin(textField: UITextField) {
+    @objc func editingDidBegin(textField: UITextField) {
         self.setMode(.Edit)
     }
     
-    func editingDidEnd(textField: UITextField) {
+    @objc func editingDidEnd(textField: UITextField) {
         
         self.setMode(TFBubbleItUpValidation.isValid(text: textField.text) ? .View : .Invalid)
         

@@ -290,7 +290,7 @@ enum DataSourceOperationError: Error {
         }
     }
     
-    func didTapOnView(sender: AnyObject) {
+    @objc func didTapOnView(sender: UITapGestureRecognizer) {
         self.selectLastPossible()
     }
     
@@ -362,7 +362,7 @@ enum DataSourceOperationError: Error {
         let item = self.items[indexPath.item]
         
         self.sizingCell.textField.text = item.text
-        let size = self.sizingCell.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
+        let size = self.sizingCell.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
         
         let layoutInset = (self.collectionViewLayout as! UICollectionViewFlowLayout).sectionInset
         let maximumWidth = self.bounds.width - layoutInset.left - layoutInset.right
