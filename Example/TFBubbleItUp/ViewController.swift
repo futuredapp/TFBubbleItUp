@@ -36,11 +36,11 @@ class ViewController: UIViewController, TFBubbleItUpViewDelegate {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func addAnother(sender: AnyObject) {
+    @IBAction func addAnother(_ sender: Any) {
         _ = self.bubbleItUpView.addStringItem(text: "ales@thefuntasty.com")
     }
-
-    @IBAction func removeLast(sender: AnyObject) {
+    
+    @IBAction func removeLast(_ sender: Any) {
         _ = self.bubbleItUpView.removeStringItem(text: "ales@thefuntasty.com")
     }
     // MARK:- TFBubbleItUpDelegate
