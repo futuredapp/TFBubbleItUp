@@ -11,7 +11,7 @@ import UIKit
 class TFTextField: UITextField {
 
     override func deleteBackward() {
-        let shouldDismiss = self.text?.characters.count == 0
+        let shouldDismiss = self.text?.count == 0
         
         super.deleteBackward()
         
