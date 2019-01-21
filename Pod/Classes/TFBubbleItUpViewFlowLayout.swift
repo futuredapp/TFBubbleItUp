@@ -10,10 +10,10 @@ import UIKit
 
 class TFBubbleItUpViewFlowLayout: UICollectionViewFlowLayout {
 
-    override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         
         // Let FlowLayout give us atributes
-        guard let array = super.layoutAttributesForElementsInRect(rect) else {
+        guard let array = super.layoutAttributesForElements(in: rect) else {
             
             return nil
         }
@@ -24,7 +24,7 @@ class TFBubbleItUpViewFlowLayout: UICollectionViewFlowLayout {
             if (attributes.representedElementKind == nil) {
                 let indexPath = attributes.indexPath
                 // Give them the right frame
-                attributes.frame = (self.layoutAttributesForItemAtIndexPath(indexPath)?.frame)!
+                attributes.frame = (self.layoutAttributesForItem(at: indexPath)?.frame)!
             }
             
             return attributes
@@ -33,9 +33,9 @@ class TFBubbleItUpViewFlowLayout: UICollectionViewFlowLayout {
         return newArray
     }
     
-    override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
+    override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         
-        let attributes = super.layoutAttributesForItemAtIndexPath(indexPath)!.copy() as! UICollectionViewLayoutAttributes
+        let attributes = super.layoutAttributesForItem(at: indexPath)!.copy() as! UICollectionViewLayoutAttributes
         var frame = attributes.frame
         
         if (attributes.frame.origin.x <= self.sectionInset.left) {
@@ -46,13 +46,13 @@ class TFBubbleItUpViewFlowLayout: UICollectionViewFlowLayout {
         if indexPath.item == 0 {
             frame.origin.x = self.sectionInset.left
         } else {
-            let previousIndexPath = NSIndexPath(forItem: indexPath.item - 1, inSection: indexPath.section)
-            let previousAttributes = self.layoutAttributesForItemAtIndexPath(previousIndexPath)!
+            let previousIndexPath = IndexPath(item: indexPath.item - 1, section: indexPath.section)
+            let previousAttributes = self.layoutAttributesForItem(at: previousIndexPath)!
             
             if (attributes.frame.origin.y > previousAttributes.frame.origin.y) {
                 frame.origin.x = self.sectionInset.left
             } else {
-                frame.origin.x = CGRectGetMaxX(previousAttributes.frame) + self.minimumInteritemSpacing
+                frame.origin.x = previousAttributes.frame.maxX + self.minimumInteritemSpacing
             }
         }
         

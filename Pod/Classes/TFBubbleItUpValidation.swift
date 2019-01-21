@@ -8,11 +8,14 @@
 
 import Foundation
 
-public typealias Validation = String -> Bool
+public typealias Validation = (String) -> Bool
 
-infix operator |>> {associativity left }
+precedencegroup DefaultPrecedence {
+    associativity: left
+}
+infix operator |>> : DefaultPrecedence
 
-public func |>> (v1: Validation, v2: Validation) -> Validation {
+public func |>> (v1: @escaping Validation, v2: @escaping Validation) -> Validation {
     return { text in return v1(text) && v2(text) }
 }
 
@@ -30,11 +33,11 @@ public class TFBubbleItUpValidation {
         return { text in
             let emailRegex = "^[+\\w\\.\\-']+@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*(\\.[a-zA-Z]{2,})+$"
             let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegex)
-            return emailTest.evaluateWithObject(text)
+            return emailTest.evaluate(with: text)
         }
     }
     
-    public class func combine(v1: Validation, v2: Validation) -> Validation {
+    public class func combine(v1: @escaping Validation, v2: @escaping Validation) -> Validation {
         return { text in return v1(text) && v2(text) }
     }
     

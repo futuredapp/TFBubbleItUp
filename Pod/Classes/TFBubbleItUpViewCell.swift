@@ -59,24 +59,24 @@ class TFBubbleItUpViewCell: UICollectionViewCell, UITextFieldDelegate {
         
         
         // Setup constraints
-        let views = ["field": self.textField]
+        let views: [String : UITextField] = ["field": self.textField]
         
-        let horizontalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[field]-0-|", options: NSLayoutFormatOptions(), metrics: nil, views: views)
-        let verticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|-(-4)-[field]-(-4)-|", options: NSLayoutFormatOptions(), metrics: nil, views: views)
+        let horizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[field]-0-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: views)
+        let verticalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-(-4)-[field]-(-4)-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: views)
         
         self.addConstraints(horizontalConstraints)
         self.addConstraints(verticalConstraints)
         
         self.textField.delegate = self
         
-        self.textField.addTarget(self, action: Selector("editingChanged:"), forControlEvents: UIControlEvents.EditingChanged)
-        self.textField.addTarget(self, action: Selector("editingDidBegin:"), forControlEvents: UIControlEvents.EditingDidBegin)
-        self.textField.addTarget(self, action: Selector("editingDidEnd:"), forControlEvents: UIControlEvents.EditingDidEnd)
+        self.textField.addTarget(self, action: #selector(TFBubbleItUpViewCell.editingChanged), for: .editingChanged)
+        self.textField.addTarget(self, action: #selector(TFBubbleItUpViewCell.editingDidBegin), for: .editingDidBegin)
+        self.textField.addTarget(self, action: #selector(TFBubbleItUpViewCell.editingDidEnd), for: .editingDidEnd)
         
         // Setup appearance
-        self.textField.borderStyle = UITextBorderStyle.None
-        self.textField.textAlignment = .Center
-        self.textField.contentMode = UIViewContentMode.Left
+        self.textField.borderStyle = .none
+        self.textField.textAlignment = .center
+        self.textField.contentMode = .left
         self.textField.keyboardType = TFBubbleItUpViewConfiguration.keyboardType
         self.textField.returnKeyType = TFBubbleItUpViewConfiguration.returnKey
         self.textField.autocapitalizationType = TFBubbleItUpViewConfiguration.autoCapitalization
@@ -86,7 +86,7 @@ class TFBubbleItUpViewCell: UICollectionViewCell, UITextFieldDelegate {
 
     }
     
-    func setMode(mode: TFBubbleItUpViewCellMode) {
+    func setMode(_ mode: TFBubbleItUpViewCellMode) {
 
         var m = mode
         
@@ -118,8 +118,9 @@ class TFBubbleItUpViewCell: UICollectionViewCell, UITextFieldDelegate {
         self.mode = mode
     }
     
-    override func intrinsicContentSize() -> CGSize {
-        var textFieldSize = self.textField.sizeThatFits(CGSizeMake(CGFloat(FLT_MAX), CGRectGetHeight(self.textField.bounds)))
+    override var intrinsicContentSize: CGSize {
+        var textFieldSize = self.textField.sizeThatFits(CGSize(width: CGFloat.greatestFiniteMagnitude,
+                                                               height: self.textField.bounds.height))
         textFieldSize.width += 30
         
         return textFieldSize
@@ -138,22 +139,22 @@ class TFBubbleItUpViewCell: UICollectionViewCell, UITextFieldDelegate {
         return true
     }
     
-    func configureWithItem(item: TFBubbleItem) {
+    func configure(with item: TFBubbleItem) {
         self.textField.text = item.text
-        self.setMode(TFBubbleItUpValidation.isValid(textField.text) ? .View : .Invalid)
+        self.setMode(TFBubbleItUpValidation.isValid(text: textField.text) ? .View : .Invalid)
     }
     
     // MARK:- UITextField delegate
     
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
-        if string == " " && TFBubbleItUpViewConfiguration.skipOnWhitespace && TFBubbleItUpValidation.isValid(self.textField.text) {
-            self.delegate?.createAndSwitchToNewCell(self)
+        if string == " " && TFBubbleItUpViewConfiguration.skipOnWhitespace && TFBubbleItUpValidation.isValid(text: self.textField.text) {
+            self.delegate?.createAndSwitchToNewCell(cell: self)
             
         } else if string == " " && TFBubbleItUpViewConfiguration.skipOnWhitespace {
             
         } else if string == "" && textField.text == "" {
-            self.delegate?.shouldDeleteCellInFrontOfCell(self)
+            self.delegate?.shouldDeleteCellInFrontOfCell(cell: self)
             
         } else {
             return self.mode == .Edit
@@ -162,15 +163,15 @@ class TFBubbleItUpViewCell: UICollectionViewCell, UITextFieldDelegate {
         return false
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         if (TFBubbleItUpViewConfiguration.skipOnReturnKey) {
             
-            if !TFBubbleItUpValidation.isValid(textField.text) {
+            if !TFBubbleItUpValidation.isValid(text: textField.text) {
                 
                 return false
             } else {
-                self.delegate?.createAndSwitchToNewCell(self)
+                self.delegate?.createAndSwitchToNewCell(cell: self)
             }
         } else {
             self.textField.resignFirstResponder()
@@ -181,20 +182,20 @@ class TFBubbleItUpViewCell: UICollectionViewCell, UITextFieldDelegate {
     
     // MARK:- UITextField handlers
     
-    func editingChanged(textField: UITextField) {
-        self.delegate?.didChangeText(self, text: textField.text ?? "")
-        self.delegate?.needUpdateLayout(self)
+    @objc func editingChanged(textField: UITextField) {
+        self.delegate?.didChangeText(cell: self, text: textField.text ?? "")
+        self.delegate?.needUpdateLayout(cell: self)
     }
     
-    func editingDidBegin(textField: UITextField) {
+    @objc func editingDidBegin(textField: UITextField) {
         self.setMode(.Edit)
     }
     
-    func editingDidEnd(textField: UITextField) {
+    @objc func editingDidEnd(textField: UITextField) {
         
-        self.setMode(TFBubbleItUpValidation.isValid(textField.text) ? .View : .Invalid)
+        self.setMode(TFBubbleItUpValidation.isValid(text: textField.text) ? .View : .Invalid)
         
-        self.delegate?.editingDidEnd(self, text: textField.text ?? "")
+        self.delegate?.editingDidEnd(cell: self, text: textField.text ?? "")
     }
     
     
