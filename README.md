@@ -1,6 +1,6 @@
 # TFBubbleItUp
 
-[![CI Status](http://img.shields.io/travis/Ales Kocur/TFBubbleItUp.svg?style=flat)](https://travis-ci.org/Ales Kocur/TFBubbleItUp)
+[![Bitrise](https://img.shields.io/bitrise/eb8c0b3c0b613d79.svg?token=AAUVkA214GsdURMfg3pKEA)](https://app.bitrise.io/app/eb8c0b3c0b613d79#/builds)
 [![Version](https://img.shields.io/cocoapods/v/TFBubbleItUp.svg?style=flat)](http://cocoapods.org/pods/TFBubbleItUp)
 [![License](https://img.shields.io/cocoapods/l/TFBubbleItUp.svg?style=flat)](http://cocoapods.org/pods/TFBubbleItUp)
 [![Platform](https://img.shields.io/cocoapods/p/TFBubbleItUp.svg?style=flat)](http://cocoapods.org/pods/TFBubbleItUp)
