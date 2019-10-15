@@ -160,7 +160,7 @@ enum DataSourceOperationError: Error {
            let item = self.items.last,
            !validator(item.text) {
             
-            let position = self.items.index(where: { (i) -> Bool in i.text == item.text })
+            let position = self.items.firstIndex { (i) -> Bool in i.text == item.text }
             
             // Force try because we know that this position exists
             try! self.replaceItemsTextAtPosition(position: position!, withText: text) {
@@ -216,7 +216,7 @@ enum DataSourceOperationError: Error {
     }
     
     public func removeStringItem(text: String) -> Bool {
-        let index = self.items.index { (item) -> Bool in item.text == text }
+        let index = self.items.firstIndex { (item) -> Bool in item.text == text }
         
         guard let i = index else {
             
