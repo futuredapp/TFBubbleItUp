@@ -140,7 +140,7 @@ public static var itemValidation: Validation? = nil
 
 ## Requirements
 
-TFBubbleItUp uses Swift 4.2. Target deployment iOS 10.0 and higher.
+TFBubbleItUp uses Swift 5.0. Target deployment iOS 10.0 and higher.
 
 ## Installation
 
