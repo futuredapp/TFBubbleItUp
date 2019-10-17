@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "TFBubbleItUp"
-  s.version          = "1.5.1"
+  s.version          = "2.0.0"
   s.summary          = "Text field with bubbles and ability of validation"
 
 # This description is used to generate tags and improve search results.
@@ -27,9 +27,9 @@ Pod::Spec.new do |s|
   s.source           = { :git => "https://github.com/thefuntasty/TFBubbleItUp.git", :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.platform     = :ios, '8.0'
+  s.platform     = :ios, '10.0'
   s.requires_arc = true
-  s.swift_version = '4.2'
+  s.swift_version = '5.0'
 
   s.source_files = 'Pod/Classes/**/*'
   s.resource_bundles = {
