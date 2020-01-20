@@ -23,7 +23,4 @@ Pod::Spec.new do |s|
   s.swift_version = '5.0'
 
   s.source_files = 'Pod/Classes/**/*'
-  s.resource_bundles = {
-    'TFBubbleItUp' => ['Pod/Assets/*.png']
-  }
 end
