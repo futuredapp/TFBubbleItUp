@@ -13,7 +13,7 @@ Just place UIView in your controller wherever you want and make it as TFBubbleIt
 
 ![Intrinsic size](https://github.com/thefuntasty/TFBubbleItUp/blob/master/intrinsic-size.png)
 
-There is also a delegate available (named bubbleItUpDelegate, because TFBubbleItUpView is in fact a subclass of UICollectionView) with currently one method **func bubbleItUpViewDidFinishEditingBubble(view: TFBubbleItUpView, text: String)**. 
+There is also a delegate available (named bubbleItUpDelegate, because TFBubbleItUpView is in fact a subclass of UICollectionView) with currently one method **func bubbleItUpViewDidFinishEditingBubble(view: TFBubbleItUpView, text: String)**.
 
 You can preset values with **setItem([TFBubbleItem])** where TFBubbleItem is a struct whose initializer takes string (*TFBubbleItem(text: "Hullo!")*).
 
@@ -36,7 +36,7 @@ func testSomething() -> Validation {
 }
 ```
 
-This allows us to easily combine validation by function TFBubbleItUpValidation.combine(v1: Validation, v2: Validation) or even better with provided operator **|>>** 
+This allows us to easily combine validation by function TFBubbleItUpValidation.combine(v1: Validation, v2: Validation) or even better with provided operator **|>>**
 
 ```swift
 let validation = TFBubbleItUpValidation.testEmptiness() |>> TFBubbleItUpValidation.testEmailAddress()
@@ -58,7 +58,7 @@ TFBubbleItUpViewConfiguration.numberOfItems = .Quantity(5) // default .Unlimited
 
 BubbleItUp is highly configurable. There is configuration file called *TFBubbleItUpViewConfiguration* with class variables for configuration.
 
-It is a mix of appearance and functional stuff. I would like to point out **skipOnWhitespace** and **skipOnReturnKey** properties, by them you can change the behaviour of bubble creation around text (see documentation comments bellow). 
+It is a mix of appearance and functional stuff. I would like to point out **skipOnWhitespace** and **skipOnReturnKey** properties, by them you can change the behaviour of bubble creation around text (see documentation comments bellow).
 
 ```swift
 /// Background color for cell in normal state
@@ -134,10 +134,6 @@ public static var numberOfItems: NumberOfItems = .Unlimited
 public static var itemValidation: Validation? = nil
 ```
 
-## TO-DO
-
-- ~~Create a validation mechanism~~
-
 ## Requirements
 
 TFBubbleItUp uses Swift 5.0. Target deployment iOS 10.0 and higher.
@@ -157,4 +153,4 @@ Ales Kocur, ales@thefuntasty.com
 
 ## License
 
-TFBubbleItUp is available under the MIT license. See the LICENSE file for more info.
+TFBubbleItUp is available under the MIT license. See the [LICENSE](LICENSE) file for more info.
