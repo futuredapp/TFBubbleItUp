@@ -11,12 +11,12 @@ Pod::Spec.new do |s|
                         Custom view for writing tags, contacts and etc. with validation.
                        DESC
 
-  s.homepage         = "https://github.com/thefuntasty/TFBubbleItUp"
-  # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
+  s.homepage         = "https://github.com/futuredapp/TFBubbleItUp"
+  s.screenshots     = "https://raw.githubusercontent.com/futuredapp/TFBubbleItUp/master/preview.gif"
   s.license          = 'MIT'
-  s.author           = { "Ales Kocur" => "ales@thefuntasty.com" }
-  s.source           = { :git => "https://github.com/thefuntasty/TFBubbleItUp.git", :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.author           = { "Ales Kocur" => "aleskocur@icloud.com" }
+  s.source           = { :git => "https://github.com/futuredapp/TFBubbleItUp.git", :tag => s.version.to_s }
+  s.social_media_url = 'https://twitter.com/Futuredapps'
 
   s.platform     = :ios, '10.0'
   s.requires_arc = true
