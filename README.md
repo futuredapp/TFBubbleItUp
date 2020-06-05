@@ -1,3 +1,5 @@
+<img alt="TFBubbleItUp logo" align="right" src="Documentation/TFBubbleItUp.svg">
+
 # TFBubbleItUp
 
 [![Bitrise](https://img.shields.io/bitrise/eb8c0b3c0b613d79.svg?token=AAUVkA214GsdURMfg3pKEA)](https://app.bitrise.io/app/eb8c0b3c0b613d79#/builds)
