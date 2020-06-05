@@ -5,13 +5,13 @@
 [![License](https://img.shields.io/cocoapods/l/TFBubbleItUp.svg?style=flat)](http://cocoapods.org/pods/TFBubbleItUp)
 [![Platform](https://img.shields.io/cocoapods/p/TFBubbleItUp.svg?style=flat)](http://cocoapods.org/pods/TFBubbleItUp)
 
-![preview](https://raw.githubusercontent.com/futuredapp/TFBubbleItUp/master/preview.gif)
+![preview](Documentation/preview.gif)
 
 ## Usage
 
 Just place UIView in your controller wherever you want and make it as TFBubbleItUpView subclass. It is configured as IBDesignable, so it will show up. The content size is calculated by the view itself, no need to use height constraint. Just set in the Interface builder Intrinsic size to placeholder - width check None and for height choose what suits you best.
 
-![Intrinsic size](https://github.com/futuredapp/TFBubbleItUp/blob/master/intrinsic-size.png)
+![Intrinsic size](Documentation/intrinsic-size.png)
 
 There is also a delegate available (named bubbleItUpDelegate, because TFBubbleItUpView is in fact a subclass of UICollectionView) with currently one method **func bubbleItUpViewDidFinishEditingBubble(view: TFBubbleItUpView, text: String)**.
 
