@@ -1,0 +1,23 @@
+name: Test
+
+on:
+  - pull_request
+
+jobs:
+  test:
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Lint
+      run: |
+        brew install swiftlint
+        swiftlint --strict
+    - name: Pod lib lint
+      run: |
+        gem install bundler
+        bundle install --jobs 4 --retry 3
+        bundle exec pod lib lint
+    - name: Build example app
+      run: |
+        xcodebuild -project Example/Sonar.xcodeproj -scheme Example -destination 'platform=iOS Simulator,name=iPhone 8' -sdk iphonesimulator test
