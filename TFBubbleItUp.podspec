@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "TFBubbleItUp"
-  s.version          = "2.1.0"
+  s.version          = "2.2.0"
   s.summary          = "Text field with bubbles and ability of validation"
 
   s.description      = <<-DESC
