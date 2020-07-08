@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
                        DESC
 
   s.homepage         = "https://github.com/futuredapp/TFBubbleItUp"
-  s.screenshots     = "https://raw.githubusercontent.com/futuredapp/TFBubbleItUp/master/preview.gif"
+  s.screenshots     = "https://github.com/futuredapp/TFBubbleItUp/raw/master/Documentation/preview.gif"
   s.license          = 'MIT'
   s.author           = { "Ales Kocur" => "aleskocur@icloud.com" }
   s.source           = { :git => "https://github.com/futuredapp/TFBubbleItUp.git", :tag => s.version.to_s }
