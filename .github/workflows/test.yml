@@ -9,10 +9,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Lint
-      run: |
-        brew install swiftlint
-        swiftlint --strict
     - name: Pod lib lint
       run: |
         gem install bundler
@@ -20,4 +16,4 @@ jobs:
         bundle exec pod lib lint
     - name: Build example app
       run: |
-        xcodebuild -project Example/Sonar.xcodeproj -scheme Example -destination 'platform=iOS Simulator,name=iPhone 8' -sdk iphonesimulator test
+        xcodebuild -project Example/TFBubbleItUp.xcodeproj -scheme Example -destination 'platform=iOS Simulator,name=iPhone 8' -sdk iphonesimulator test
