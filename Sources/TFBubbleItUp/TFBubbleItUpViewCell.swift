@@ -4,7 +4,7 @@ enum TFBubbleItUpViewCellMode {
     case Edit, View, Invalid
 }
 
-protocol TFBubbleItUpViewCellDelegate {
+protocol TFBubbleItUpViewCellDelegate: AnyObject {
     func didChangeText(cell: TFBubbleItUpViewCell, text: String)
     func needUpdateLayout(cell: TFBubbleItUpViewCell)
     func createAndSwitchToNewCell(cell: TFBubbleItUpViewCell)
