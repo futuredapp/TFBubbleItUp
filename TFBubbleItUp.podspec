@@ -1,7 +1,3 @@
-#
-# Be sure to run `pod lib lint TFBubbleItUp.podspec' to ensure this is a
-# valid spec before submitting.
-
 Pod::Spec.new do |s|
   s.name             = "TFBubbleItUp"
   s.version          = "2.1.0"

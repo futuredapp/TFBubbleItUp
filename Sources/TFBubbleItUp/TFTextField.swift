@@ -1,11 +1,3 @@
-//
-//  TFTextField.swift
-//  Pods
-//
-//  Created by Aleš Kocur on 30/09/15.
-//
-//
-
 import UIKit
 
 class TFTextField: UITextField {

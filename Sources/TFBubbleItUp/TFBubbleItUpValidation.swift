@@ -1,11 +1,3 @@
-//
-//  TFBubbleItUpValidation.swift
-//  Pods
-//
-//  Created by Aleš Kocur on 15/09/15.
-//
-//
-
 import Foundation
 
 public typealias Validation = (String) -> Bool

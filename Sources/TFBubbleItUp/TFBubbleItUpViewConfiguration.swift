@@ -1,11 +1,3 @@
-//
-//  TFContactCollectionConfiguration.swift
-//  TFContactCollection
-//
-//  Created by Aleš Kocur on 13/09/15.
-//  Copyright © 2015 The Funtasty. All rights reserved.
-//
-
 import Foundation
 import UIKit
 

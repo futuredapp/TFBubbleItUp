@@ -1,11 +1,3 @@
-//
-//  TFContactCollectionCellCollectionViewCell.swift
-//  TFContactCollection
-//
-//  Created by Aleš Kocur on 12/09/15.
-//  Copyright © 2015 The Funtasty. All rights reserved.
-//
-
 import UIKit
 
 enum TFBubbleItUpViewCellMode {
