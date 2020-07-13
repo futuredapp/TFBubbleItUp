@@ -20,7 +20,7 @@ class TFBubbleItUpViewCell: UICollectionViewCell, UITextFieldDelegate {
     weak var delegate: TFBubbleItUpViewCellDelegate?
 
     class var identifier: String {
-        return "TFContactCollectionCellCollectionViewCell"
+        "TFContactCollectionCellCollectionViewCell"
     }
 
     override func awakeFromNib() {
@@ -74,7 +74,6 @@ class TFBubbleItUpViewCell: UICollectionViewCell, UITextFieldDelegate {
         self.textField.autocorrectionType = TFBubbleItUpViewConfiguration.autoCorrection
 
         self.setMode(.View)
-
     }
 
     func setMode(_ mode: TFBubbleItUpViewCellMode) {
@@ -141,12 +140,9 @@ class TFBubbleItUpViewCell: UICollectionViewCell, UITextFieldDelegate {
 
         if string == " " && TFBubbleItUpViewConfiguration.skipOnWhitespace && TFBubbleItUpValidation.isValid(text: self.textField.text) {
             self.delegate?.createAndSwitchToNewCell(cell: self)
-
         } else if string == " " && TFBubbleItUpViewConfiguration.skipOnWhitespace {
-
         } else if string == "" && textField.text == "" {
             self.delegate?.shouldDeleteCellInFrontOfCell(cell: self)
-
         } else {
             return self.mode == .Edit
         }
@@ -188,5 +184,4 @@ class TFBubbleItUpViewCell: UICollectionViewCell, UITextFieldDelegate {
 
         self.delegate?.editingDidEnd(cell: self, text: textField.text ?? "")
     }
-
 }

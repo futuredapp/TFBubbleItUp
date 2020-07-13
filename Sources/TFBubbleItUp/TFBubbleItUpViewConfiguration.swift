@@ -85,5 +85,4 @@ public class TFBubbleItUpViewConfiguration {
 
     /// Item has to pass validation before it can be bubbled
     public static var itemValidation: Validation?
-
 }

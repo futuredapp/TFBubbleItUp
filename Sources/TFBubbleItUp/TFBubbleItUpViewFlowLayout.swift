@@ -10,7 +10,7 @@ class TFBubbleItUpViewFlowLayout: UICollectionViewFlowLayout {
             return nil
         }
 
-        let newArray = array.map { (element) -> UICollectionViewLayoutAttributes in
+        let newArray = array.map { element -> UICollectionViewLayoutAttributes in
             let attributes = element.copy() as! UICollectionViewLayoutAttributes
 
             if attributes.representedElementKind == nil {
@@ -51,7 +51,5 @@ class TFBubbleItUpViewFlowLayout: UICollectionViewFlowLayout {
         attributes.frame = frame
 
         return attributes
-
     }
-
 }

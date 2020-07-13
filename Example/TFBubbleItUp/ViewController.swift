@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 Ales Kocur. All rights reserved.
 //
 
-import UIKit
 import TFBubbleItUp
+import UIKit
 
 class ViewController: UIViewController, TFBubbleItUpViewDelegate {
 
@@ -28,7 +28,6 @@ class ViewController: UIViewController, TFBubbleItUpViewDelegate {
         TFBubbleItUpViewConfiguration.itemValidation = validation
 
         TFBubbleItUpViewConfiguration.numberOfItems = .Quantity(5)
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,5 +47,4 @@ class ViewController: UIViewController, TFBubbleItUpViewDelegate {
     func bubbleItUpViewDidFinishEditingBubble(view: TFBubbleItUpView, text: String) {
         self.textLabel.text = view.validStrings().joined(separator: ", ")
     }
-
 }

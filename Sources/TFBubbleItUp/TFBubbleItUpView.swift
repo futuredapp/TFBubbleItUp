@@ -29,7 +29,7 @@ enum DataSourceOperationError: Error {
 
     public weak var bubbleItUpDelegate: TFBubbleItUpViewDelegate?
 
-    required public init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.collectionViewLayout = TFBubbleItUpViewFlowLayout()
         self.customInit()
@@ -38,7 +38,6 @@ enum DataSourceOperationError: Error {
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: TFBubbleItUpViewFlowLayout())
         self.customInit()
-
     }
 
     func customInit() {
@@ -73,7 +72,7 @@ enum DataSourceOperationError: Error {
         self.addGestureRecognizer(self.tapRecognizer)
     }
 
-    public override func prepareForInterfaceBuilder() {
+    override public func prepareForInterfaceBuilder() {
         self.setItems([TFBubbleItem(text: "exm@ex.com"), TFBubbleItem(text: "hello@thefuntasty.com")])
     }
 
@@ -97,8 +96,8 @@ enum DataSourceOperationError: Error {
 
     public func setStringItems(items: [String]) {
         // Set new items
-        let bubbleItems = items.map({ (text) -> TFBubbleItem in
-            return TFBubbleItem(text: text)
+        let bubbleItems = items.map({ text -> TFBubbleItem in
+            TFBubbleItem(text: text)
         })
 
         self.setItems(bubbleItems)
@@ -107,13 +106,13 @@ enum DataSourceOperationError: Error {
     /// Returns all non-empty items
     public func stringItems() -> [String] {
 
-        return self.items.filter({ (item) -> Bool in item.text != "" }).map({ (item) -> String in item.text })
+        self.items.filter({ item -> Bool in item.text != "" }).map({ item -> String in item.text })
     }
 
     /// Returns all valid strings
     public func validStrings() -> [String] {
 
-        return self.items.filter({ (item) -> Bool in item.text != "" && TFBubbleItUpValidation.isValid(text: item.text) }).map({ (item) -> String in item.text })
+        self.items.filter({ item -> Bool in item.text != "" && TFBubbleItUpValidation.isValid(text: item.text) }).map({ item -> String in item.text })
     }
 
     public func setPlaceholderText(text: String) {
@@ -139,7 +138,6 @@ enum DataSourceOperationError: Error {
 
                     completion?()
                 }
-
             }
         } else {
             completion?()
@@ -152,7 +150,7 @@ enum DataSourceOperationError: Error {
            let item = self.items.last,
            !validator(item.text) {
 
-            let position = self.items.firstIndex { (i) -> Bool in i.text == item.text }
+            let position = self.items.firstIndex { i -> Bool in i.text == item.text }
 
             // Force try because we know that this position exists
             try! self.replaceItemsTextAtPosition(position: position!, withText: text) {
@@ -162,7 +160,6 @@ enum DataSourceOperationError: Error {
                 }
                 completion?()
             }
-
         } else {
             _ = addStringItem(text: text) {
 
@@ -175,7 +172,7 @@ enum DataSourceOperationError: Error {
     }
 
     /// Adds item if possible, returning Bool indicates success or failure
-    public func addStringItem(text: String, completion: (()->Void)? = nil) -> Bool {
+    public func addStringItem(text: String, completion: (() -> Void)? = nil) -> Bool {
 
         if self.items.count == self.needPreciseNumberOfItems() && self.items.last?.text != "" {
 
@@ -190,14 +187,13 @@ enum DataSourceOperationError: Error {
                 _ = cell.resignFirstResponder()
                 self.needUpdateLayout(cell: cell, completion: completion)
             }
-
         } else {
             self.items.append(TFBubbleItem(text: text))
 
             self.performBatchUpdates({ () -> Void in
                 let newLastIndexPath = IndexPath(item: self.items.count - 1, section: 0)
                 self.insertItems(at: [newLastIndexPath])
-                }) { (_) -> Void in
+                }) { _ -> Void in
                     // Invalidate intrinsic size when done
                     self.invalidateIntrinsicContentSize(completionBlock: completion)
             }
@@ -207,7 +203,7 @@ enum DataSourceOperationError: Error {
     }
 
     public func removeStringItem(text: String) -> Bool {
-        let index = self.items.firstIndex { (item) -> Bool in item.text == text }
+        let index = self.items.firstIndex { item -> Bool in item.text == text }
 
         guard let i = index else {
 
@@ -219,8 +215,7 @@ enum DataSourceOperationError: Error {
         self.performBatchUpdates({ () -> Void in
             let newLastIndexPath = IndexPath(item: i, section: 0)
             self.deleteItems(at: [newLastIndexPath])
-
-            }) { (_) -> Void in
+            }) { _ -> Void in
                 // Invalidate intrinsic size when done
                 self.invalidateIntrinsicContentSize(completionBlock: nil)
         }
@@ -228,7 +223,7 @@ enum DataSourceOperationError: Error {
         return true
     }
 
-    public override func becomeFirstResponder() -> Bool {
+    override public func becomeFirstResponder() -> Bool {
 
         self.selectLastPossible()
 
@@ -256,8 +251,7 @@ enum DataSourceOperationError: Error {
         if self.intrinsicContentSize != self.bounds.size {
             UIView.animate(withDuration: 0.2, animations: { () -> Void in
                 self.invalidateIntrinsicContentSize()
-
-                }) { (_) -> Void in
+                }) { _ -> Void in
                     completionBlock?()
             }
         } else {
@@ -299,7 +293,7 @@ enum DataSourceOperationError: Error {
             // Update collectionView
             self.performBatchUpdates({ () -> Void in
                 self.insertItems(at: [IndexPath(item: self.items.count - 1, section: 0)])
-                }) { (_) -> Void in
+                }) { _ -> Void in
                     // Invalidate intrinsic size when done
                     self.invalidateIntrinsicContentSize(completionBlock: nil)
             }
@@ -338,12 +332,12 @@ enum DataSourceOperationError: Error {
 
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
-        return self.items.count
+        self.items.count
     }
 
     public func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
 
-        return 1
+        1
     }
 
     // MARK: - UICollectionViewFlowLayout delegate
@@ -412,7 +406,6 @@ enum DataSourceOperationError: Error {
         if let nextCell = self.cellForItem(at: newIndexPath) as? TFBubbleItUpViewCell, nextCell.textField.text == "" {
 
             _ = nextCell.becomeFirstResponder()
-
         } else {
             self.items.append(TFBubbleItem(text: "", becomeFirstResponder: true)) // insert new data item
 
@@ -420,7 +413,7 @@ enum DataSourceOperationError: Error {
             self.performBatchUpdates({ () -> Void in
                 let newLastIndexPath = IndexPath(item: self.items.count - 1, section: indexPath.section)
                 self.insertItems(at: [newLastIndexPath])
-                }) { (_) -> Void in
+                }) { _ -> Void in
                     // Invalidate intrinsic size when done
                     self.invalidateIntrinsicContentSize(completionBlock: nil)
                     // The new cell should now become the first reponder
@@ -443,7 +436,7 @@ enum DataSourceOperationError: Error {
             // Update collectionView
             self.performBatchUpdates({ () -> Void in
                 self.deleteItems(at: [indexPath])
-                }) { (_) -> Void in
+                }) { _ -> Void in
                     // Invalidate intrinsic size when done
                     self.invalidateIntrinsicContentSize(completionBlock: nil)
 
@@ -481,7 +474,6 @@ enum DataSourceOperationError: Error {
         } catch DataSourceOperationError.OutOfBounds {
             print("Error occured while removing item")
         } catch {
-
         }
     }
 
@@ -498,8 +490,7 @@ enum DataSourceOperationError: Error {
         // Update collectionView
         self.performBatchUpdates({ () -> Void in
             self.deleteItems(at: [IndexPath(item: index, section: 0)])
-
-            }) {[weak self] (_) -> Void in
+            }) {[weak self] _ -> Void in
                 // Invalidate intrinsic size when done
                 self?.invalidateIntrinsicContentSize(completionBlock: nil)
                 completion?()
