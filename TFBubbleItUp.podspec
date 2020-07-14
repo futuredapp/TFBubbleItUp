@@ -1,10 +1,6 @@
-#
-# Be sure to run `pod lib lint TFBubbleItUp.podspec' to ensure this is a
-# valid spec before submitting.
-
 Pod::Spec.new do |s|
   s.name             = "TFBubbleItUp"
-  s.version          = "2.1.0"
+  s.version          = "2.2.0"
   s.summary          = "Text field with bubbles and ability of validation"
 
   s.description      = <<-DESC
@@ -12,7 +8,7 @@ Pod::Spec.new do |s|
                        DESC
 
   s.homepage         = "https://github.com/futuredapp/TFBubbleItUp"
-  s.screenshots     = "https://raw.githubusercontent.com/futuredapp/TFBubbleItUp/master/preview.gif"
+  s.screenshots     = "https://github.com/futuredapp/TFBubbleItUp/raw/master/Documentation/preview.gif"
   s.license          = 'MIT'
   s.author           = { "Ales Kocur" => "aleskocur@icloud.com" }
   s.source           = { :git => "https://github.com/futuredapp/TFBubbleItUp.git", :tag => s.version.to_s }
@@ -22,5 +18,5 @@ Pod::Spec.new do |s|
   s.requires_arc = true
   s.swift_version = '5.0'
 
-  s.source_files = 'Pod/Classes/**/*'
+  s.source_files = 'Sources/TFBubbleItUp/*'
 end
